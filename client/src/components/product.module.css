@@ -1,0 +1,14 @@
+.productcontainer{
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: repeat(3,1fr);
+    
+}
+
+
+.productbox{
+    text-align: center;
+}
+.productbox>div{
+    justify-content: center;
+}
