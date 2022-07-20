@@ -1,9 +1,12 @@
 
 function App() {
   return (
-   <div>
-     
-   </div>
+
+
+   <div className="bg-[#F5F5F5] font-Quicksand"></div>
+
+  
+
   );
 }
 
