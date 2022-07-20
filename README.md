@@ -1,1 +1,3 @@
-# tart-clover-1298
+# SUGAR Cosmetics
+
+SUGAR Cosmetics is an Indian e-commerce company, founded by Vineeta Singh (Co-founder and CEO) and Kaushik Mukherjee (Co-founder and COO) in 2015, with its headquarters in Mumbai. It focuses on selling makeup and skincare products that are millennial friendly, best suited for Indian skin tones and are cruelty-free. However, not all of their products are 100% vegan. Their products are manufactured in state of the art facilities across many countries such as Germany, Italy, USA, India , etc. and are sold across websites, mobile apps and offline stores. SUGAR has an omni-channel distribution network of around 10,000 retail outlets across 130 cities. It is one of the top 4 cosmetic brands in terms of distribution to sales. As for SUGAR’s supply chain, they have a vast presence across retail stores including standalone and marketplaces along with D2C channel shipping directly to consumers in 18000+ pincodes all over India.
