@@ -1,9 +1,11 @@
-
+import Cart from './pages/Cart/Cart'
 
 function App() {
   return (
-   <div></div>
-  );
+    <div>
+      <Cart />
+    </div>
+  )
 }
 
-export default App;
+export default App
