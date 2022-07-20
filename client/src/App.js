@@ -1,11 +1,15 @@
-import Cart from './pages/Cart/Cart'
+
 
 function App() {
   return (
-    <div>
-      <Cart />
-    </div>
-  )
+
+
+   <div className="bg-[#F5F5F5] font-Quicksand"></div>
+
+  
+
+  );
+
 }
 
 export default App
