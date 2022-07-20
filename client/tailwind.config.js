@@ -5,8 +5,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'quicksand': ['nunito', 'sans-serif'],
-      'MyFont': ['"My Font"', 'serif'] 
+      'Quicksand': ['Quicksand'],
     },
     extend: {},
   },
