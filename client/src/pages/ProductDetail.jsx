@@ -1,4 +1,5 @@
 import React from 'react'
+import {FaShoppingBag} from 'react-icons/fa'
 
 const ProductDetail = () => {
   return (
@@ -11,7 +12,22 @@ const ProductDetail = () => {
                 
               </div>
               <div className="h-[510px] w-[160px] max-h-[650px] px-[12px] border border-black"></div>
-              <div className="w-2/5 flex max-w-full px-[12px] border border-black"></div>
+              <div className="w-2/5 flex flex-col max-w-full px-[12px] border border-black">
+                <h1 className="mb-[4px]">
+                  <span className="text-2xl cursor-pointer font-medium">Air Kiss Powder Lipstick</span>
+                </h1>
+                <div className="flex mb-2">
+                  <div className="mr-[20px]">★★★★★</div>
+                  <div>{'4.7 (55)'}</div>
+                </div>
+                <div className="mb-2">
+                  <span className="mx-2">₹ 499.00</span>
+                </div>
+                <div className="mb-3 mt-1 cursor-pointer bg-[#1E2125] rounded-[4px] h-[24px] w-[255px] p-[4px] ">
+                  <button className="h-[24px] w-[245px] text-white flex justify-center "><FaShoppingBag/> Add to Cart</button>
+                </div>
+                <div className="mb-3 cursor-pointer"></div>
+              </div>
             </div>
           </div>
         </div>
