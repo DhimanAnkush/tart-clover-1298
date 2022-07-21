@@ -2,7 +2,6 @@ const express = require("express");
 require("dotenv").config({ path: "./.env" });
 const connection = require("./Database/db");
 const productRouter = require("./routes/Aman/products.route");
-const connection = require("./Database/db");
 const cors = require("cors");
 const helmet = require("helmet");
 
