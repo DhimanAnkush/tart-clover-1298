@@ -37,7 +37,6 @@ const Makeup_Products = () => {
           })
         }
       </div>
-
     </div>
  
   )
