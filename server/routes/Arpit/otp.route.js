@@ -18,14 +18,14 @@ otp.post("/sendOTP", (req, res) => {
   const data = `${phone}.${otp}.${expires}`;
   const hash = crypto.createHmac("sha256", smsKey).update(data).digest("hex");
   const fullHash = `${hash}.${expires}`;
-  // client.messages
-  //   .create({
-  //     body: `Your One Time Password for Sugar Cosmetics is ${otp}`,
-  //     from: +18125059670,
-  //     to: phone,
-  //   })
-  //   .then((messages) => console.log(messages))
-  //   .catch((error) => console.error(error));
+  client.messages
+    .create({
+      body: `Your One Time Password for Sugar Cosmetics is ${otp}`,
+      from: +18125059670,
+      to: phone,
+    })
+    .then((messages) => console.log(messages))
+    .catch((error) => console.error(error));
   res.status(200).send({ phone: phone, hash: fullHash, otp: otp });
 });
 
@@ -52,7 +52,7 @@ otp.post("/verifyOTP", (req, res) => {
       expiresIn: "30s",
     });
     const refreshToken = jwt.sign({ data: phone }, JWT_REFRESH_TOKEN, {
-      expiresIn: "30s",
+      expiresIn: "30d",
     });
     refreshTokens.push(refreshToken);
     res
@@ -132,11 +132,12 @@ otp.post("/refresh", (req, res) => {
 });
 
 otp.get("/logout", (req, res) => {
+  const phone = req.body.phone
   res
     .clearCookie("refreshToken")
     .clearCookie("accessToken")
     .clearCookie("authSession")
     .clearCookie("refreshTokenID")
-    .send("User Logout Successfully");
+    .send(`${phone} Logout Successfully`);
 });
 module.exports = otp;
