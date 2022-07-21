@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Product from '../components/Product'
+import { getProduct } from '../redux/action'
+import styles from "../components/product.module.css"
 
 const skincare_products = () => {
     let products= useSelector((state)=>state.products)
