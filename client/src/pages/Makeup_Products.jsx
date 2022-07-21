@@ -1,4 +1,9 @@
 import React from 'react'
+import Product from '../components/Product'
+import { getProduct } from '../redux/action'
+import styles from "../components/product.module.css"
+import { useEffect } from 'react'
+import {useDispatch,useSelector} from "react-redux"
 
 const Makeup_Products = () => {
  
