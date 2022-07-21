@@ -11,11 +11,11 @@ productRouter.get("/get", async (req, res) => {
 productRouter.get("/:category", async (req, res) => {
   if (req.query.sort == "h2l") {
     var data = await Product.find({ category: req.params.category }).sort({
-      Price: -1,
+      price: -1,
     });
   } else if (req.query.sort == "l2h") {
     data = await Product.find({ category: req.params.category }).sort({
-      Price: 1,
+      price: 1,
     });
   } else {
     data = await Product.find({ category: req.params.category });
