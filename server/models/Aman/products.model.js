@@ -4,7 +4,7 @@ const productSchema = new Schema({
   image: String,
   title: String,
   review: String,
-  price: String,
+  price: Number,
   rating: String,
   category: String,
 });
