@@ -3,7 +3,7 @@ export const ADDPRODUCT= "ADDPRODUCT"
 
 
 
-const addProduct= (payload)=>{
+export const addProduct= (payload)=>{
  return {
     type:ADDPRODUCT,
     payload
@@ -13,7 +13,7 @@ const addProduct= (payload)=>{
 export const getProduct= (payload) => (dispatch) =>{
  axios.get(`http://localhost:8080/products/${payload}`)
  .then(({data})=>{
-    console.log(data)
+   //  console.log(data)
     dispatch(addProduct(data))
  })
  
