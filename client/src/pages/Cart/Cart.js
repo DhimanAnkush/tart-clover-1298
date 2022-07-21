@@ -8,12 +8,13 @@ import { FaShoppingBag, FaFileInvoiceDollar } from 'react-icons/fa'
 import styles from './Cart.module.css'
 import { BsFillTagFill } from 'react-icons/bs'
 import { AiOutlineLeft } from 'react-icons/ai'
+import SingleProduct from './SingleProduct'
 
 const Cart = () => {
   const [quantity, setQuantity] = useState(1)
 
   return (
-    <div className="p-10 shadow-lg p-5 rounded-lg w-[90%] mx-auto">
+    <div className="p-10 shadow-lg p-5 rounded-lg w-[90%] mx-auto mt-[9%]">
       <div className="bg-white space-between flex gap-x-10 p-4 rounded">
         <div className="flex justify-between w-1/2">
           <div className="flex gap-x-1 items-center">
@@ -44,56 +45,7 @@ const Cart = () => {
         <div className="w-1/2 mt-5 bg-[#faf9f9] p-5 flex flex-col gap-y-5">
           {/* Cart Added Products */}
           <div>
-            <div className="flex items-center  ">
-              <div className="flex gap-x-5 w-1/2">
-                <img
-                  alt="product img"
-                  className="w-[55px] h-[75px] "
-                  src="https://cdn.shopify.com/s/files/1/0906/2558/products/1_9814781c-2d1a-4019-ba96-94b9df6f2345.jpg?v=1648102353"
-                />
-                <div className="w-96 flex flex-col gap-y-2">
-                  <p className=" font-bold text-[12px] text-[#575555] truncate ... w-[50%]">
-                    Stroke Of Genius Heavy-Duty Kohl - 05 Black Magic (Black
-                    With Silver Glitter) - DP
-                  </p>
-                  <div className="flex text-[#575555] text-[12px] gap-x-1">
-                    <img
-                      alt="img"
-                      src="https://in.sugarcosmetics.com/desc-images/Wishlist.svg"
-                    />
-                    <p>Save to Wishlist</p>
-                  </div>
-                </div>
-              </div>
-              {/* Add to Cart Button */}
-              <div className="flex cursor-pointer  h-fit  py-2  gap-x-4 lg:ml-20 ml-8 items-center box-border">
-                <div>
-                  <MdDeleteOutline size={20} />
-                </div>
-                <div className="flex gap-x-2">
-                  <button
-                    className="bg-black w-[19px] h-[19px] text-white rounded-full font-extrabold text-[13px]"
-                    onClick={() => quantity && setQuantity(quantity - 1)}
-                  >
-                    -
-                  </button>
-                  <p className="text-[12px]">{quantity}</p>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="bg-black w-[19px] h-[19px] text-white rounded-full font-extrabold text-[13px]"
-                  >
-                    +
-                  </button>
-                </div>
-                <div className="text-[12px] text-[#212529]">
-                  {quantity} x 149
-                </div>
-                <div className="text-[12px] text-[#212529]">
-                  {' '}
-                  = {quantity * 149}
-                </div>
-              </div>
-            </div>
+            <SingleProduct/>
           </div>
 
           {/* map suggested products */}
