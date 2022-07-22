@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaShoppingBag } from "react-icons/fa";
 import { BsHeart } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
-
+import {  useParams} from 'react-router-dom'
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const ProductDetail = () => {
+
+  const [pro, setPro]  = useState({})
+  const params = useParams()
+  const {id} = params;
+  console.log(id)
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/products/single/62d9037a242cd2f24d9f36e3`)
+      .get(`http://localhost:8080/products/single/${id}`)
       .then(({ data }) => {
         console.log(data);
       });
