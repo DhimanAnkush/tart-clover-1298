@@ -3,7 +3,10 @@ const Product = require("../../models/Aman/products.model");
 
 const productRouter = Router();
 
-
+productRouter.get("/single/:id", async (req, res) => {
+  let data = await Product.findById({ _id: req.params.id });
+  res.json(data);
+});
 
 productRouter.get("/:category", async (req, res) => {
   if (req.query.sort == "h2l") {
@@ -25,9 +28,6 @@ productRouter.get("/:category/:sub", async (req, res) => {
   res.json(data);
 });
 
-productRouter.get("/single/:id", async (req, res) => {
-  let data = await Product.findById({ _id: req.params.id });
-  res.json(data);
-});
+
 
 module.exports = productRouter;

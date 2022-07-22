@@ -12,12 +12,11 @@ const ProductDetail = () => {
   const [pro, setPro]  = useState({})
   const params = useParams()
   const {id} = params;
-  console.log(id)
   useEffect(() => {
     axios
       .get(`http://localhost:8080/products/single/${id}`)
       .then(({ data }) => {
-        console.log(data);
+        setPro(data)
       });
   }, []);
   return (
@@ -29,7 +28,7 @@ const ProductDetail = () => {
               <div className=" w-4/12 flex border px-[12px]">
                 <div className="z-2">
                   <div className="relative">
-                    <img  className='w-[293px] h-[400px]' src="	https://via.placeholder.com/293x400px" alt="" />
+                    <img  className='w-[293px] h-[400px]' src={pro.image?pro.image:""} alt="" />
                   </div>
                 </div>
               </div>
@@ -41,16 +40,16 @@ const ProductDetail = () => {
               <div className="w-2/5 flex flex-col max-w-full px-[12px] border ">
                 <h1 className="mb-[4px]">
                   <span className="text-2xl cursor-pointer font-medium">
-                    Air Kiss Powder Lipstick
+                    {pro.title?pro.title:""}
                   </span>
                 </h1>
                 <div className="flex items-center mb-2">
                   <div className="mr-[20px] text-yellow-300 text-2xl">★★★★★</div>
                   {/* <span data-index="4" data-forhalf="★" className="relative overflow-hidden text-gray-400 text-2xl box-content">★</span> */}
-                  <div>{"5.1 (55)"}</div>
+                  <div>{pro.rating?pro.rating:""}  {pro.review?pro.review:""}</div>
                 </div>
                 <div className="mb-2">
-                  <span className="mx-2">₹ 499.00</span>
+                  <span className="mx-2">₹ {pro.price?pro.price:""}</span>
                 </div>
                 <div className="mb-3 mt-1 p-[4px] bg-[#1E2125] rounded-[4px] w-[245px]">
                   <button className=" cursor-pointer h-[24px] w-[245px] text-white flex justify-center items-center">
