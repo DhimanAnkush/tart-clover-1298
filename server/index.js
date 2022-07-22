@@ -6,7 +6,7 @@ const productRouter = require("./routes/Aman/products.route");
 
 const cors = require("cors");
 const helmet = require("helmet");
-const otp = require("./routes/Arpit/otp.route");
+// const otp = require("./routes/Arpit/otp.route");
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send(`Sugar Cosmetics API server started on localhost:${PORT}`);
 });
-app.use("/", otp);
+// app.use("/", otp);
 app.use("/products", productRouter);
 
 const PORT = process.env.PORT || 8080;

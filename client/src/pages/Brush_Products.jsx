@@ -6,13 +6,19 @@ import { addProduct, getProduct } from '../redux/action'
 import styles from "../components/product.module.css"
 import axios from 'axios'
 import ProductTitle from '../components/ProductTitle'
+import { useParams } from 'react-router'
 const Brush_Products = () => {
+  const params= useParams();
+  const{sub}= params;
     let products= useSelector((state)=>state.products)
-    
     let dispatch= useDispatch()
     useEffect(()=>{
-      dispatch(getProduct('brushes'))
-    },[])
+      if(sub){
+        dispatch(getProduct(`brushes/${sub}`))
+      }else{
+        dispatch(getProduct('brushes'))
+      }
+    },[sub])
   
     const handleChange= (e)=>{
       axios.get(`http://localhost:8080/products/brushes?sort=${e.target.value}`)
@@ -20,8 +26,10 @@ const Brush_Products = () => {
     }
   
   return (
+    <>
+    <ProductTitle image="https://d32baadbbpueqt.cloudfront.net/Collection/39da2bc6-d83c-4350-a2b1-0c0ec7a721a8.jpg" />
     <div className={styles.mainproductdiv} >
-      <ProductTitle image="https://d32baadbbpueqt.cloudfront.net/Collection/39da2bc6-d83c-4350-a2b1-0c0ec7a721a8.jpg" />
+      
        <select name="sort" onChange={handleChange} >
         <option value="relevance">Relevance</option>
        <option value="h2l">Price- High to low</option>
@@ -36,6 +44,8 @@ const Brush_Products = () => {
       </div>
       
     </div>
+    </>
+
 
     
   )

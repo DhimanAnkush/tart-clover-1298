@@ -12,7 +12,7 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
   case ADDPRODUCT:
     return{
-        ...state,products:payload
+        ...state,products:[...payload]
     }
   default:
     return state
