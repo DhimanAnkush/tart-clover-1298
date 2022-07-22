@@ -8,10 +8,29 @@ import {
   MdOutlineLocalShipping,
 } from 'react-icons/md'
 import SingleProduct from './SingleProduct'
-import Modal from './Modal'
+import IndianPincode from 'india-pincode-lookup'
 
 const Checkout = () => {
   const [quantity, setQuantity] = useState(0)
+  const [toggle, setToggle] = useState(false)
+  const [address, setAddress] = useState({})
+  const [pinDetails, setPinDetails] = useState({})
+
+  const handlePincode = async (value) => {
+    var pin = IndianPincode.lookup(value)
+    console.log(pin, 'pindetails')
+    if (pin.length>1000 || pin.length==0) {
+      alert('Enter Valid Pincode')
+      return
+    }
+    setPinDetails({
+      city: pin[0].districtName,
+      state: pin[0].stateName,
+      taluk: pin[0].taluk,
+      post: pin[0].officeName,
+    })
+  }
+
   return (
     <>
       <div className="w-[90%] bg-white border shadow-lg m-auto mt-20 p-4 rounded-[15px]">
@@ -113,7 +132,10 @@ const Checkout = () => {
               </p>
             </div>
             <div>
-              <div className="bg-[#D3D3D3] px-5 py-2 w-fit float-right cursor-pointer rounded-lg">
+              <div
+                onClick={() => setToggle(!toggle)}
+                className="bg-[#D3D3D3] px-5 py-2 w-fit float-right cursor-pointer rounded-lg"
+              >
                 + Add New Address
               </div>
             </div>
@@ -136,146 +158,208 @@ const Checkout = () => {
         </div>
       </div>
 
-      <div className="w-screen h-screen z-[40]   absolute top-0 ">
-        <div className="bg-black w-screen h-screen opacity-60 "></div>
-        <div className="bg-white  w-[60%] h-fit m-auto p-4 rounded-lg absolute top-20  left-0 right-0 opacity-100">
-          <div className="flex ">
-            <div className="flex items-center gap-x-2">
-              <img src="https://in.sugarcosmetics.com/desc-images/Add_Address.svg" />
-              <p>Add New Delivery Address</p>
+      {toggle && (
+        <div className="w-screen h-screen z-[40]   absolute top-0 ease-in duration-300">
+          <div className="bg-black w-screen h-screen opacity-60 "></div>
+          <div className="bg-white  w-[60%] h-fit m-auto p-4 rounded-lg absolute top-20  left-0 right-0 opacity-100">
+            <div className="flex ">
+              <div className="flex items-center gap-x-2">
+                <img src="https://in.sugarcosmetics.com/desc-images/Add_Address.svg" />
+                <p>Add New Delivery Address</p>
+              </div>
+              <MdOutlineClose
+                className="ml-auto cursor-pointer"
+                size={25}
+                onClick={() => setToggle(false)}
+              />
             </div>
-            <MdOutlineClose className="ml-auto" size={25} />
+
+            <div className="text-[#6C757D] mt-5 flex flex-col gap-y-5 ">
+              {/* First Name & Last Name */}
+              <div className="flex gap-x-5">
+                <div className="flex flex-col gap-y-2 w-1/2">
+                  <label for="name" className="text-[13px]">
+                    First Name<sup className="text-pink">*</sup>
+                  </label>
+                  <input
+                    placeholder="Enter First Name"
+                    type="text"
+                    name="Fname"
+                    id="name"
+                    required
+                    onChange={(e) =>
+                      setAddress({
+                        ...address,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    className="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                  />
+
+                  <p className="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                    Please Enter Your First Name
+                  </p>
+                </div>
+                <div className="flex flex-col gap-y-2 w-1/2">
+                  <label for="name" className="text-[13px]">
+                    Last Name<sup className="text-pink">*</sup>
+                  </label>
+                  <input
+                    placeholder="Enter Last Name"
+                    type="text"
+                    name="Lname"
+                    id="name"
+                    required
+                    onChange={(e) =>
+                      setAddress({
+                        ...address,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    className="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                  />
+
+                  <p className="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px] font-bold">
+                    Please Enter Your Last Name
+                  </p>
+                </div>
+              </div>
+
+              {/* Phone Number        */}
+              <div>
+                <div className="flex flex-col gap-y-2 ">
+                  <label for="Number" className="text-[13px]">
+                    Phone Number<sup className="text-pink">*</sup>
+                  </label>
+                  <input
+                    placeholder="Enter Your Phone Number"
+                    type="text"
+                    name="Number"
+                    id="Number"
+                    required
+                    onChange={(e) =>
+                      setAddress({
+                        ...address,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    className="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                  />
+
+                  <p className="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                    Please Enter Your Phone Number
+                  </p>
+                </div>
+              </div>
+
+              {/* Address Div */}
+              <div>
+                <div className="flex flex-col gap-y-2 ">
+                  <label for="Address" className="text-[13px]">
+                    Address<sup className="text-pink">*</sup>
+                  </label>
+                  <input
+                    placeholder="Enter Your Address"
+                    type="text"
+                    name="Address"
+                    id="Address"
+                    required
+                    onChange={(e) =>
+                      setAddress({
+                        ...address,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    className="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                  />
+
+                  <p className="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                    Please Enter Your Address
+                  </p>
+                </div>
+              </div>
+
+              {/* Pincode Details */}
+
+              <div className="flex gap-x-5">
+                <div className="flex flex-col gap-y-2 w-1/4 ">
+                  <label for="Pincode" className="text-[13px]">
+                    Pincode<sup className="text-pink">*</sup>
+                  </label>
+                  <input
+                    placeholder="Enter Your Pincode"
+                    type="text"
+                    name="Pincode"
+                    id="Pincode"
+                    onChange={(e) =>
+                      setAddress({
+                        ...address,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    required
+                    className="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                  />
+
+                  <p className="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                    Please Enter A Valid Pincode
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <button
+                    className="bg-black text-[#ffff] text-[12px] px-4 py-1 rounded-lg"
+                    onClick={() => handlePincode(address.Pincode)}
+                  >
+                    Get Details
+                  </button>
+                </div>
+              </div>
+
+              {/* City State Country */}
+              <div className="h-5">
+                <input
+                  disabled
+                  value={pinDetails.post}
+                  name="post"
+                  type="text"
+                  className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                  placeholder="post"
+                />
+                <input
+                  disabled
+                  value={pinDetails.city}
+                  type="text"
+                  name="city"
+                  className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                  placeholder="city"
+                />
+                <input
+                  disabled
+                  value={pinDetails.state}
+                  type="text"
+                  name="state"
+                  className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                  placeholder="state"
+                />
+              </div>
+
+              {/* Save & Cancel Buttons */}
+              <div className="flex justify-center gap-x-5">
+                <input
+                  type="submit"
+                  className="bg-[#fc2779] text-[#ffff] py-1 px-4 rounded-lg font-bold"
+                  value="Save and use this Address"
+                />
+                <input
+                  type="button"
+                  className="bg-black text-[#ffff] py-1 px-4 rounded-lg font-bold"
+                  value="Cancel"
+                />
+              </div>
+            </div>
           </div>
-
-          <form className="text-[#6C757D] mt-5 flex flex-col gap-y-5 ">
-            {/* First Name & Last Name */}
-            <div className="flex gap-x-5">
-              <div class="flex flex-col gap-y-2 w-1/2">
-                <label for="name" className="text-[13px]">
-                  First Name<sup className="text-pink">*</sup>
-                </label>
-                <input
-                  placeholder="Enter First Name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-                />
-
-                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                  Please Enter Your First Name
-                </p>
-              </div>
-              <div class="flex flex-col gap-y-2 w-1/2">
-                <label for="name" className="text-[13px]">
-                  Last Name<sup className="text-pink">*</sup>
-                </label>
-                <input
-                  placeholder="Enter Last Name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-                />
-
-                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px] font-bold">
-                  Please Enter Your Last Name
-                </p>
-              </div>
-            </div>
-
-            {/* Phone Number        */}
-            <div>
-              <div class="flex flex-col gap-y-2 ">
-                <label for="Number" className="text-[13px]">
-                  Phone Number<sup className="text-pink">*</sup>
-                </label>
-                <input
-                  placeholder="Enter Your Phone Number"
-                  type="text"
-                  name="Number"
-                  id="Number"
-                  required
-                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-                />
-
-                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                  Please Enter Your Phone Number
-                </p>
-              </div>
-            </div>
-
-            {/* Address Div */}
-            <div>
-              <div class="flex flex-col gap-y-2 ">
-                <label for="Address" className="text-[13px]">
-                  Address<sup className="text-pink">*</sup>
-                </label>
-                <input
-                  placeholder="Enter Your Address"
-                  type="text"
-                  name="Address"
-                  id="Address"
-                  required
-                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-                />
-
-                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                  Please Enter Your Address
-                </p>
-              </div>
-            </div>
-
-            {/* Pincode Details */}
-
-            <div className="flex gap-x-5">
-              <div class="flex flex-col gap-y-2 w-1/4 ">
-                <label for="Pincode" className="text-[13px]">
-                  Pincode<sup className="text-pink">*</sup>
-                </label>
-                <input
-                  placeholder="Enter Your Pincode"
-                  type="text"
-                  name="Pincode"
-                  id="Pincode"
-                  required
-                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-                />
-
-                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                  Please Enter A Valid Pincode
-                </p>
-              </div>
-              <div className="flex items-center">
-                <button className="bg-black text-[#ffff] text-[12px] px-4 py-1 rounded-lg">
-                  Get Details
-                </button>
-              </div>
-            </div>
-
-            {/* City State Country */}
-            <div className="h-5">
-              <input disabled
-                type="text"
-                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
-                placeholder="Country"
-              />
-              <input disabled
-                type="text"
-                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
-                placeholder="State"
-              />
-              <input disabled
-                type="text"
-                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
-                placeholder="City"
-              />
-            </div>
-          </form>
         </div>
-      </div>
+      )}
     </>
   )
 }
