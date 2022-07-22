@@ -52,7 +52,15 @@
 
 .mainproductdiv{
    width: 90%;
-   margin:auto
+   margin:auto;
+   margin-top:10px;
+}
+
+.selectbox{
+    display: flex ;
+    justify-content: end;
+    gap:10px;
+    align-items: center;
 }
 
 

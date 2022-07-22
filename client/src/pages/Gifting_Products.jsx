@@ -6,30 +6,26 @@ import { useEffect } from 'react'
 import {useDispatch,useSelector} from "react-redux"
 import axios from 'axios'
 import ProductTitle from '../components/ProductTitle'
-import { useParams } from 'react-router'
 
-const Makeup_Products = () => {
-    const params= useParams();
-    const{sub}= params;
+const Gifting_Products = () => {
+ 
     let products= useSelector((state)=>state.products)
+    
     let dispatch= useDispatch()
     useEffect(()=>{
-      if(sub){
-         dispatch(getProduct(`makeup/${sub}`))
-      }else{
-        dispatch(getProduct('makeup'))
-      }
-    },[sub])
+      dispatch(getProduct('gifting'))
+    },[])
 
     const handleChange= (e)=>{
-      axios.get(`http://localhost:8080/products/makeup?sort=${e.target.value}`)
+      axios.get(`http://localhost:8080/products/gifting?sort=${e.target.value}`)
       .then(({data})=>dispatch(addProduct(data)))
     }
 
   return (
     <>
-    <ProductTitle image={"https://d32baadbbpueqt.cloudfront.net/Collection/6a68d77f-80b5-4860-9a4d-6005844c937d.jpg"} />
+    <ProductTitle image={"https://d32baadbbpueqt.cloudfront.net/Collection/9e08d6b0-08e8-4894-acae-ad1fd84bc837.jpg"} />
     <div className={styles.mainproductdiv} >
+      
       <select name="sort" onChange={handleChange} >
         <option value="relevance">Relevance</option>
        <option value="h2l">Price- High to low</option>
@@ -44,10 +40,11 @@ const Makeup_Products = () => {
         }
       </div>
     </div>
-    </>
     
+    </>
+ 
  
   )
 }
 
-export default Makeup_Products
+export default Gifting_Products
