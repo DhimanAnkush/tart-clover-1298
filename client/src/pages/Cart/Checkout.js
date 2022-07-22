@@ -8,6 +8,7 @@ import {
   MdOutlineLocalShipping,
 } from 'react-icons/md'
 import SingleProduct from './SingleProduct'
+import Modal from './Modal'
 
 const Checkout = () => {
   const [quantity, setQuantity] = useState(0)
@@ -135,126 +136,145 @@ const Checkout = () => {
         </div>
       </div>
 
-      <div className="bg-white w-[60%] h-[60%] m-auto p-4 rounded-lg">
-        <div className="flex ">
-          <div className="flex items-center gap-x-2">
-            <img src="https://in.sugarcosmetics.com/desc-images/Add_Address.svg" />
-            <p>Add New Delivery Address</p>
+      <div className="w-screen h-screen z-[40]   absolute top-0 ">
+        <div className="bg-black w-screen h-screen opacity-60 "></div>
+        <div className="bg-white  w-[60%] h-fit m-auto p-4 rounded-lg absolute top-20  left-0 right-0 opacity-100">
+          <div className="flex ">
+            <div className="flex items-center gap-x-2">
+              <img src="https://in.sugarcosmetics.com/desc-images/Add_Address.svg" />
+              <p>Add New Delivery Address</p>
+            </div>
+            <MdOutlineClose className="ml-auto" size={25} />
           </div>
-          <MdOutlineClose className="ml-auto" size={25} />
+
+          <form className="text-[#6C757D] mt-5 flex flex-col gap-y-5 ">
+            {/* First Name & Last Name */}
+            <div className="flex gap-x-5">
+              <div class="flex flex-col gap-y-2 w-1/2">
+                <label for="name" className="text-[13px]">
+                  First Name<sup className="text-pink">*</sup>
+                </label>
+                <input
+                  placeholder="Enter First Name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                />
+
+                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                  Please Enter Your First Name
+                </p>
+              </div>
+              <div class="flex flex-col gap-y-2 w-1/2">
+                <label for="name" className="text-[13px]">
+                  Last Name<sup className="text-pink">*</sup>
+                </label>
+                <input
+                  placeholder="Enter Last Name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                />
+
+                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px] font-bold">
+                  Please Enter Your Last Name
+                </p>
+              </div>
+            </div>
+
+            {/* Phone Number        */}
+            <div>
+              <div class="flex flex-col gap-y-2 ">
+                <label for="Number" className="text-[13px]">
+                  Phone Number<sup className="text-pink">*</sup>
+                </label>
+                <input
+                  placeholder="Enter Your Phone Number"
+                  type="text"
+                  name="Number"
+                  id="Number"
+                  required
+                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                />
+
+                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                  Please Enter Your Phone Number
+                </p>
+              </div>
+            </div>
+
+            {/* Address Div */}
+            <div>
+              <div class="flex flex-col gap-y-2 ">
+                <label for="Address" className="text-[13px]">
+                  Address<sup className="text-pink">*</sup>
+                </label>
+                <input
+                  placeholder="Enter Your Address"
+                  type="text"
+                  name="Address"
+                  id="Address"
+                  required
+                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                />
+
+                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                  Please Enter Your Address
+                </p>
+              </div>
+            </div>
+
+            {/* Pincode Details */}
+
+            <div className="flex gap-x-5">
+              <div class="flex flex-col gap-y-2 w-1/4 ">
+                <label for="Pincode" className="text-[13px]">
+                  Pincode<sup className="text-pink">*</sup>
+                </label>
+                <input
+                  placeholder="Enter Your Pincode"
+                  type="text"
+                  name="Pincode"
+                  id="Pincode"
+                  required
+                  class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
+                />
+
+                <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
+                  Please Enter A Valid Pincode
+                </p>
+              </div>
+              <div className="flex items-center">
+                <button className="bg-black text-[#ffff] text-[12px] px-4 py-1 rounded-lg">
+                  Get Details
+                </button>
+              </div>
+            </div>
+
+            {/* City State Country */}
+            <div className="h-5">
+              <input disabled
+                type="text"
+                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                placeholder="Country"
+              />
+              <input disabled
+                type="text"
+                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                placeholder="State"
+              />
+              <input disabled
+                type="text"
+                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                placeholder="City"
+              />
+            </div>
+          </form>
         </div>
-
-        <form className="text-[#6C757D] mt-5 flex flex-col gap-y-5">
-          {/* First Name & Last Name */}
-          <div className="flex gap-x-5">
-            <div class="flex flex-col gap-y-2 w-1/2">
-              <label for="name" className="text-[13px]">
-                First Name<sup className="text-pink">*</sup>
-              </label>
-              <input
-                placeholder="Enter First Name"
-                type="text"
-                name="name"
-                id="name"
-                required
-                class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-              />
-
-              <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                Please Enter Your First Name
-              </p>
-            </div>
-            <div class="flex flex-col gap-y-2 w-1/2">
-              <label for="name" className="text-[13px]">
-                Last Name<sup className="text-pink">*</sup>
-              </label>
-              <input
-                placeholder="Enter Last Name"
-                type="text"
-                name="name"
-                id="name"
-                required
-                class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-              />
-
-              <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px] font-bold">
-                Please Enter Your Last Name
-              </p>
-            </div>
-          </div>
-
-          {/* Phone Number        */}
-          <div>
-            <div class="flex flex-col gap-y-2 ">
-              <label for="Number" className="text-[13px]">
-                Phone Number<sup className="text-pink">*</sup>
-              </label>
-              <input
-                placeholder="Enter Your Phone Number"
-                type="text"
-                name="Number"
-                id="Number"
-                required
-                class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-              />
-
-              <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                Please Enter Your Phone Number
-              </p>
-            </div>
-          </div>
-
-          {/* Address Div */}
-          <div>
-            <div class="flex flex-col gap-y-2 ">
-              <label for="Address" className="text-[13px]">
-                Address<sup className="text-pink">*</sup>
-              </label>
-              <input
-                placeholder="Enter Your Address"
-                type="text"
-                name="Address"
-                id="Address"
-                required
-                class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-              />
-
-              <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                Please Enter Your Address
-              </p>
-            </div>
-          </div>
-
-          {/* Pincode Details */}
-
-          <div className="flex gap-x-5">
-            <div class="flex flex-col gap-y-2 w-1/4 ">
-              <label for="Pincode" className="text-[13px]">
-                Pincode<sup className="text-pink">*</sup>
-              </label>
-              <input
-                placeholder="Enter Your Pincode"
-                type="text"
-                name="Pincode"
-                id="Pincode"
-                required
-                class="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
-              />
-
-              <p class="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px]">
-                Please Enter A Valid Pincode
-              </p>
-            </div>
-            <div className="flex items-center">
-              <button className="bg-black text-[#ffff] text-[12px] px-4 py-1 rounded-lg">Get Details</button>
-            </div>
-                  </div>
-                  
-                  {/* City State Country */}
-                  <div  className="h-5 ">
-                      <input type="text" className='disabled:opacity-75' />
-                  </div>
-        </form>
       </div>
     </>
   )
