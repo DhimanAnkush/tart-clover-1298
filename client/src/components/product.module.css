@@ -56,6 +56,13 @@
    margin-top:10px;
 }
 
+.selectbox{
+    display: flex ;
+    justify-content: end;
+    gap:10px;
+    align-items: center;
+}
+
 
 @media all and (max-width:780px) {
     .productcontainer{
