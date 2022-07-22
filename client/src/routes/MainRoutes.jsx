@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
+import { Home } from '../components/Home'
 import Brush_Products from '../pages/Brush_Products'
 import Cart from '../pages/Cart/Cart'
 import Checkout from '../pages/Cart/Checkout'
@@ -11,6 +12,7 @@ function MainRoutes() {
   return (
     <div>
         <Routes>
+          <Route path='/' element={<Home/>}></Route>
             <Route path='/brush-products' element={<Brush_Products/>}/>
             <Route path='/brush-products/:sub' element={<Brush_Products/>}/>
             <Route path='/makeup-products' element={<Makeup_Products/>}/>
