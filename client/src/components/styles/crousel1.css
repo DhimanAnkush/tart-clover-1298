@@ -1,0 +1,38 @@
+.crousel1{
+    margin-top: 40px;
+}
+h1.ryf{
+    margin-left: 674px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 100;
+    font-size: x-large;
+}
+h1.bs{
+    margin-left: 47.9%;
+    font-weight: 100;
+    font-size: x-large;
+}
+h1.latte{
+    /* margin-top: 50%; */
+     margin-left: 47%;
+     font-weight: 900;
+     font-size: small;
+}
+.img1{
+    margin-left: 25%;
+    width: 950px;
+    max-height: 5%;
+    padding: 10px 55px 10px;
+}
+.ss{
+    margin-left: 41%;
+    background-color: black;
+    color: white;
+    width: 70%;
+    height: 30px;
+
+}
+h3{
+    margin-left: 71.1%;
+}
