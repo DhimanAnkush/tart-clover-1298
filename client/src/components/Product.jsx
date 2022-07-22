@@ -31,7 +31,7 @@ const Product = ({image,title,review,price,rating,_id}) => {
           </div>
       </div>
         <div ref={cartboxRef} className={styles.cartbox}>
-          <div><BsHeart style={{margin:"auto"}}/></div>
+          <div><BsHeart style={{margin:"auto",fontSize:"18px",fontWeight:"border"}}/></div>
           <p>ADD TO CART</p>
         </div>
     </div>

@@ -1,5 +1,3 @@
-import { Footer } from "./Footer"
-import { Navbar } from "./Header"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import './styles/crousel1.css';
@@ -49,7 +47,7 @@ export const Home = () => {
 
     return (
         <div>
-            <Navbar />
+            
 
             <Carousel
                 responsive={responsive}
@@ -143,7 +141,7 @@ export const Home = () => {
                 </Carousel>
             </div>
 
-            <Footer />
+           
         </div>
     )
 }

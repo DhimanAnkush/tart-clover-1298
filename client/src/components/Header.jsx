@@ -1,7 +1,9 @@
 import './styles/header.css';
 import {Link, useNavigate} from 'react-router-dom'
-
-
+import { FaUserAlt } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
+import {BsHeartFill} from "react-icons/bs"
+import {TbDiscount2} from 'react-icons/tb'
 export const Navbar = () => {
     const navigate= useNavigate()
     return (
@@ -16,16 +18,20 @@ export const Navbar = () => {
                         <p>Search</p>
                     </div>
                     <div className="Header__Login">
+                        <FaUserAlt style={{color:"black",fontSize:"20px"}} />
                         <a id="loginLink" className="Header__Login__P">Login / Register</a>
                     </div>
                     <div className="Header__LikeCart">
                         <div>
-                            <a href="/wishlist/wishlist.html"><i className="far fa-heart"></i></a>
-                            <div className="wishlist_active"></div>
+                            <a href="/wishlist/wishlist.html"><BsHeartFill style={{color:"#495057",fontSize:"16px"}} /></a>
+                            {/* <div className="wishlist_active"></div> */}
                         </div>
                         <div>
-                            <a href="/Cart_page/cart.html"><i className="fas fa-shopping-cart"></i></a>
-                            <div className="cart_active"></div>
+                            <a href="/Cart_page/cart.html"><FaShoppingBag style={{color:"#495057",fontSize:"16px"}} /></a>
+                            {/* <div className="cart_active"></div> */}
+                        </div>
+                        <div>
+                        <TbDiscount2 style={{color:"#495057",fontSize:"20px"}} />
                         </div>
                     </div>
                 </div>

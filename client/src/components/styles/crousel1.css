@@ -33,6 +33,6 @@ h1.latte{
     height: 30px;
 
 }
-h3{
+.latte+h3{
     margin-left: 71.1%;
 }
