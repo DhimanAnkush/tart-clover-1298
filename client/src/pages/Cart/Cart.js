@@ -10,10 +10,12 @@ import { BsFillTagFill } from 'react-icons/bs'
 import { AiOutlineLeft } from 'react-icons/ai'
 import SingleProduct from './SingleProduct'
 
+
 const Cart = () => {
   const [quantity, setQuantity] = useState(1)
 
   return (
+    <>
     <div className="p-10 shadow-lg p-5 rounded-lg w-[90%] mx-auto mt-[9%]">
       <div className="bg-white space-between flex gap-x-10 p-4 rounded">
         <div className="flex justify-between w-1/2">
@@ -176,7 +178,9 @@ const Cart = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      
+      </>
   )
 }
 

@@ -8,6 +8,7 @@ import {
   MdOutlineLocalShipping,
 } from 'react-icons/md'
 import SingleProduct from './SingleProduct'
+import Modal from './Modal'
 
 const Checkout = () => {
   const [quantity, setQuantity] = useState(0)
@@ -135,8 +136,9 @@ const Checkout = () => {
         </div>
       </div>
 
-      <div className="w-screen h-screen z-[100] bg-white absolute top-0 opacity-30">
-        <div className="bg-white  w-[60%] h-[60%] m-auto p-4 rounded-lg absolute top-20  left-0 right-0 ">
+      <div className="w-screen h-screen z-[40]   absolute top-0 ">
+        <div className="bg-black w-screen h-screen opacity-60 "></div>
+        <div className="bg-white  w-[60%] h-fit m-auto p-4 rounded-lg absolute top-20  left-0 right-0 opacity-100">
           <div className="flex ">
             <div className="flex items-center gap-x-2">
               <img src="https://in.sugarcosmetics.com/desc-images/Add_Address.svg" />
@@ -254,8 +256,22 @@ const Checkout = () => {
             </div>
 
             {/* City State Country */}
-            <div className="h-5 ">
-              <input type="text" className="disabled:opacity-75" />
+            <div className="h-5">
+              <input disabled
+                type="text"
+                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                placeholder="Country"
+              />
+              <input disabled
+                type="text"
+                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                placeholder="State"
+              />
+              <input disabled
+                type="text"
+                className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
+                placeholder="City"
+              />
             </div>
           </form>
         </div>
