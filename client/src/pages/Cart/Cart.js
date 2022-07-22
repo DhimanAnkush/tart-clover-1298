@@ -1,14 +1,21 @@
-import React from 'react'
-import { MdOutlineShoppingCart, MdOutlineLocalShipping } from 'react-icons/md'
+import React, { useState } from 'react'
+import {
+  MdOutlineShoppingCart,
+  MdOutlineLocalShipping,
+  MdDeleteOutline,
+} from 'react-icons/md'
 import { FaShoppingBag, FaFileInvoiceDollar } from 'react-icons/fa'
 import styles from './Cart.module.css'
 import { BsFillTagFill } from 'react-icons/bs'
 import { AiOutlineLeft } from 'react-icons/ai'
+import SingleProduct from './SingleProduct'
 
 const Cart = () => {
+  const [quantity, setQuantity] = useState(1)
+
   return (
-    <div className="p-10 shadow-lg p-5 rounded-lg w-[90%] mx-auto">
-      <div className="bg-white space-between flex gap-x-10">
+    <div className="p-10 shadow-lg p-5 rounded-lg w-[90%] mx-auto mt-[9%]">
+      <div className="bg-white space-between flex gap-x-10 p-4 rounded">
         <div className="flex justify-between w-1/2">
           <div className="flex gap-x-1 items-center">
             <MdOutlineShoppingCart />
@@ -21,48 +28,60 @@ const Cart = () => {
           </div>
         </div>
 
-        <div className="flex ">
+        <div className="flex  w-1/2">
           <div className="flex gap-x-2">
-            <img src="https://in.sugarcosmetics.com/desc-images/Offers_price_details.svg" />
+            <img
+              alt="offers img"
+              src="https://in.sugarcosmetics.com/desc-images/Offers_price_details.svg"
+            />
             Offers and Price Details
           </div>
           <div></div>
         </div>
       </div>
-      <div className="flex justify-between gap-x-10 ">
-        {/* Suggested Products  */}
-        <div className="w-1/2 mt-5 bg-[#faf9f9] p-5">
+      {/* Products && payment Div */}
+      <div className="flex justify-between gap-x-10  box-border">
+        {/* Suggested Products && Cart Products */}
+        <div className="w-1/2 mt-5 bg-[#faf9f9] p-5 flex flex-col gap-y-5">
+          {/* Cart Added Products */}
+          <div>
+            <SingleProduct/>
+          </div>
+
           {/* map suggested products */}
-          <div className="flex items-center justify-between ">
-            <div className="flex gap-x-5">
-              <img
-                className="w-[55px] h-[75px] "
-                src="https://cdn.shopify.com/s/files/1/0906/2558/products/1_9814781c-2d1a-4019-ba96-94b9df6f2345.jpg?v=1648102353"
-              />
-              <div className="w-96 flex flex-col justify-around">
-                <p className=" font-bold text-[12px] text-[#575555">
-                  Stroke Of Genius Heavy-Duty Kohl - 05 Black Magic (Black With
-                  Silver Glitter) - DP
+          <div>
+            <div className="flex items-center justify-between ">
+              <div className="flex gap-x-5">
+                <img
+                  alt="product img"
+                  className="w-[55px] h-[75px] "
+                  src="https://cdn.shopify.com/s/files/1/0906/2558/products/1_9814781c-2d1a-4019-ba96-94b9df6f2345.jpg?v=1648102353"
+                />
+                <div className="w-96 flex flex-col justify-around">
+                  <p className=" font-bold text-[12px] text-[#575555">
+                    Stroke Of Genius Heavy-Duty Kohl - 05 Black Magic (Black
+                    With Silver Glitter) - DP
+                  </p>
+                  <p className="text-[#fc2799] text-[10px] font-normal">
+                    BONUS UNLOCKED!
+                  </p>
+                </div>
+              </div>
+              {/* Add to Cart Button */}
+              <div className="flex cursor-pointer border-2 h-fit px-3 py-2 rounded">
+                <p className="underline text-[12px] text-[#575555]">
+                  +Add Item
                 </p>
-                <p className="text-[#fc2799] text-[10px] font-normal">
-                  BONUS UNLOCKED!
+                <p className="text-[#fc2799] text-[12px] ">
+                  ({' '}
+                  <span className="line-through text-[12px] text-[#575555]">
+                    ₹499
+                  </span>{' '}
+                  ₹149)
                 </p>
               </div>
             </div>
-            {/* Add to Cart Button */}
-            <div className="flex cursor-pointer border-2 h-fit px-3 py-2 rounded">
-              <p className="underline text-[12px] text-[#575555]">+Add Item</p>
-              <p className="text-[#fc2799] text-[12px] ">
-                ({' '}
-                <span className="line-through text-[12px] text-[#575555]">
-                  ₹499
-                </span>{' '}
-                ₹149)
-              </p>
-            </div>
           </div>
-
-          {/* Cart Added Products */}
         </div>
 
         {/* Payment & Total Price */}
@@ -70,7 +89,10 @@ const Cart = () => {
           {/* Coupon code */}
           <div className="flex justify-between">
             <div className="flex text-[14px] w-1/2 items-center gap-x-2">
-              <img src="https://in.sugarcosmetics.com/desc-images/GiftCard.svg" />
+              <img
+                alt="tag"
+                src="https://in.sugarcosmetics.com/desc-images/GiftCard.svg"
+              />
               <p>Gift Card/Discount Code</p>
             </div>
             <div className="bg-white pl-3 rounded-lg">
@@ -85,8 +107,13 @@ const Cart = () => {
             </div>
           </div>
           <div className="flex mt-5 gap-x-2">
-            <img src="https://in.sugarcosmetics.com/desc-images/PriceDetails.svg" />
-            <p>Price Details</p>
+            <img
+              alt="price"
+              src="https://in.sugarcosmetics.com/desc-images/PriceDetails.svg"
+            />
+            <p>
+              <span className="underline">Price</span> Details
+            </p>
           </div>
           {/* Price Details */}
           <div className="bg-white p-4 rounded-lg mt-5">
