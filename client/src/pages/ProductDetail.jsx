@@ -1,6 +1,6 @@
 // import styled from "styled-components";
 import React, { useState } from "react";
-import ReactImageMagnify from "react-image-magnify";
+// import ReactImageMagnify from "react-image-magnify";
 import { useEffect } from "react";
 import { FaShoppingBag } from "react-icons/fa";
 import { BsHeart } from "react-icons/bs";
@@ -43,8 +43,8 @@ const ProductDetail = () => {
               <div className=" w-4/12 flex  px-[12px]">
                 <div className="z-2">
                   <div className="relative">
-                    {/* <img  className='w-[293px] h-[400px]' src={dp} alt="" /> */}
-                    <ReactImageMagnify 
+                    <img  className='w-[293px] h-[400px]' src={dp} alt="" />
+                    {/* <ReactImageMagnify 
                   {...{
                     smallImage: {
                       alt: "Wristwatch by Ted Baker London",
@@ -65,7 +65,7 @@ const ProductDetail = () => {
                       height: "110%",
                     },
                   }}
-                />
+                /> */}
 
                   </div>
                 </div>
