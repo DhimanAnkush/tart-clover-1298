@@ -16,6 +16,7 @@ import fix4 from '../assets/fix4.webp'
 
 
 const ProductDetail = () => {
+  const [addedcart,setAddedCart] = useState(false);
   const [dp, setDp] = useState('')
   const [pro, setPro]  = useState({})
   const params = useParams()
@@ -37,6 +38,7 @@ const ProductDetail = () => {
 
   const handleaddCart= ()=>{
     axios.post(`http://localhost:8080/cart`,{user:"62dba5200958bae1b7664da0",product:id,quantity:1})
+    setAddedCart(true)
   }
 
   return (
@@ -97,11 +99,12 @@ const ProductDetail = () => {
                   <span className="mx-2">₹ {pro.price?pro.price:""}</span>
                 </div>
                 <div className="mb-3 mt-1 p-[4px] bg-[#1E2125] rounded-[4px] w-[245px]">
-                  <button className=" cursor-pointer h-[24px] w-[245px] text-white flex justify-center items-center" 
+                  {!addedcart?  (<button className=" cursor-pointer h-[24px] w-[245px] text-white flex justify-center items-center" 
                   onClick={handleaddCart}
                   >
                     <FaShoppingBag className="mr-[4px]" /> Add to Cart
-                  </button>
+                  </button>):(<h1>Product Added to Cart!</h1>)}
+                
                 </div>
                 <div className="mb-3 mt-1 cursor-pointer flex items-center">
                   <BsHeart className="mr-[4px]" />
