@@ -134,7 +134,7 @@ otp.post("/refresh", (req, res) => {
 });
 
 otp.get("/logout", (req, res) => {
-  const phone = req.body.phone;
+  const phone = req.body.phone
   res
     .clearCookie("refreshToken")
     .clearCookie("accessToken")
