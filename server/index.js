@@ -11,7 +11,7 @@ const AddressRoute = require('./routes/P Naga/AddressRoute')
 
 const cors = require('cors')
 const helmet = require('helmet')
-// const otp = require('./routes/Arpit/otp.route')
+const otp = require('./routes/Arpit/otp.route')
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
@@ -23,7 +23,7 @@ app.use(cookieParser())
 app.get("/", (req, res) => {
   res.send(`Sugar Cosmetics API server started on localhost:${PORT}`);
 });
-// app.use("/", otp);
+app.use("/", otp);
 
 
 
