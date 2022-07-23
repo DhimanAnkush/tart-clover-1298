@@ -23,7 +23,7 @@ const Search = () => {
     }
   return (
    <div style={{margin:"auto",marginTop:"40px", width:"90%"}}>
-     <h3>Search Results for {search}</h3>
+     <h2>Search Results for {search}</h2>
       <div className={styles.productcontainer}>
         {searchData.map((el, index) => {
         return <Product key={index} {...el} />;
