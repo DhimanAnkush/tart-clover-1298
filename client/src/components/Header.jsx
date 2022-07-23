@@ -1,4 +1,5 @@
 import './styles/header.css';
+import React from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
