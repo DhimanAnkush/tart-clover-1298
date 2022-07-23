@@ -44,21 +44,21 @@ const ProductDetail = () => {
                 <div className="z-2">
                   <div className="relative">
                     {/* <img  className='w-[293px] h-[400px]' src={dp} alt="" /> */}
-                    <ReactImageMagnify
+                    <ReactImageMagnify 
                   {...{
                     smallImage: {
                       alt: "Wristwatch by Ted Baker London",
                       isFluidWidth: false,
                       sizes:
                         "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
-                      width: 400,
-                      height: 450,
+                      width: 293,
+                      height: 400,
                       src: dp,
                     },
                     largeImage: {
                       src: dp,
-                      width: 800,
-                      height: 850,
+                      width: 550,
+                      height: 550,
                     },
                     enlargedImageContainerDimensions: {
                       width: "140%",
