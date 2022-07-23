@@ -11,7 +11,7 @@ const JWT_REFRESH_TOKEN = process.env.JWT_REFRESH_TOKEN;
 let refreshTokens = [];
 const smsKey = process.env.SMS_SECRET_KEY;
 
-otp.post("/sendOTP", (req, res) => {
+otp.post("/sendOTP", async (req, res) => {
   const phone = req.body.phone;
   const otp = Math.floor(100000 + Math.random() * 900000);
   const ttl = 2 * 60 * 1000;
@@ -27,8 +27,17 @@ otp.post("/sendOTP", (req, res) => {
     })
     .then((messages) => console.log(messages))
     .catch((error) => console.error(error));
-  otpSchema.insertMany({ phone: phone, hash: fullHash, otp: otp })
-  res.status(200).send({ phone: phone, hash: fullHash, otp: otp });
+  let user = await otpSchema.findOne({ phone: phone });
+  if (user) {
+    await otpSchema.updateOne(
+      { id: user._id },
+      { phone: phone, hash: fullHash, otp: otp }
+    );
+    res.status(200).send({ phone: phone, hash: fullHash, otp: otp });
+  } else {
+    await otpSchema.insertMany([{ phone: phone, hash: fullHash, otp: otp }]);
+    res.status(200).send({ phone: phone, hash: fullHash, otp: otp });
+  }
 });
 
 otp.post("/verifyOTP", (req, res) => {
