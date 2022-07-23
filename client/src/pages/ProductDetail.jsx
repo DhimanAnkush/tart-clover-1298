@@ -1,4 +1,6 @@
+// import styled from "styled-components";
 import React, { useState } from "react";
+import ReactImageMagnify from "react-image-magnify";
 import { useEffect } from "react";
 import { FaShoppingBag } from "react-icons/fa";
 import { BsHeart } from "react-icons/bs";
@@ -6,9 +8,15 @@ import { AiOutlineHeart } from "react-icons/ai";
 import {  useParams} from 'react-router-dom'
 import axios from "axios";
 import { Link } from "react-router-dom";
+import fix1 from '../assets/fix1.webp'
+import fix2 from '../assets/fix2.webp'
+import fix3 from '../assets/fix3.webp'
+import fix4 from '../assets/fix4.webp'
+
+
 
 const ProductDetail = () => {
-
+  const [dp, setDp] = useState('')
   const [pro, setPro]  = useState({})
   const params = useParams()
   const {id} = params;
@@ -17,27 +25,59 @@ const ProductDetail = () => {
       .get(`http://localhost:8080/products/single/${id}`)
       .then(({ data }) => {
         setPro(data)
+        setDp(data.image)
+        // console.log(data)
       });
   }, []);
+
+  const handleImgChange = (img) =>{
+    console.log(img)
+    setDp(img)
+  }
   return (
     <div>
       <div className="m-auto flex justify-center">
-        <div className="bg-white lg:w-[1116px] pt-[16px] shadow-[0_7px_8px_4px_rgba(0,0,0,0.1)] mt-5">
+        <div className="bg-white lg:w-[1116px] pt-[16px] shadow-[0_7px_8px_4px_rgba(0,0,0,0.1)] mt-10">
           <div className="px-1.5">
-            <div className="flex flex-wrap mx-[-12px] border ">
-              <div className=" w-4/12 flex border px-[12px]">
+            <div className="flex flex-wrap mx-[-12px] ">
+              <div className=" w-4/12 flex  px-[12px]">
                 <div className="z-2">
                   <div className="relative">
-                    <img  className='w-[293px] h-[400px]' src={pro.image?pro.image:""} alt="" />
+                    {/* <img  className='w-[293px] h-[400px]' src={dp} alt="" /> */}
+                    <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      alt: "Wristwatch by Ted Baker London",
+                      isFluidWidth: false,
+                      sizes:
+                        "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
+                      width: 400,
+                      height: 450,
+                      src: dp,
+                    },
+                    largeImage: {
+                      src: dp,
+                      width: 800,
+                      height: 850,
+                    },
+                    enlargedImageContainerDimensions: {
+                      width: "140%",
+                      height: "110%",
+                    },
+                  }}
+                />
+
                   </div>
                 </div>
               </div>
-              <div className="h-[510px] w-[160px] max-h-[650px] px-[12px] border  flex flex-col items-center">
-                <img className='my-2 h-[115px] w-[84px]' src="https://via.placeholder.com/84x115px" alt="" />
-                <img className='my-2 h-[115px] w-[84px]' src="https://via.placeholder.com/84x115px" alt="" />
-                <img className='my-2 h-[115px] w-[84px]' src="https://via.placeholder.com/84x115px" alt="" />
+              <div className="h-[510px] w-[160px] max-h-[650px] px-[12px]  cursor-pointer flex flex-col items-center">
+                <img className='my-2 h-[115px] w-[84px]' src={pro.image?pro.image:""} alt="" onClick={(e)=> handleImgChange(pro.image)}/>
+                <img className='my-2 h-[115px] w-[84px]' src={fix1} alt="" onClick={(e)=> handleImgChange(fix1)}/>
+                <img className='my-2 h-[115px] w-[84px]' src={fix2} alt="" onClick={(e)=> handleImgChange(fix2)}/>
+
+                
               </div>
-              <div className="w-2/5 flex flex-col max-w-full px-[12px] border ">
+              <div className="w-2/5 flex flex-col max-w-full px-[12px] ">
                 <h1 className="mb-[4px]">
                   <span className="text-2xl cursor-pointer font-medium">
                     {pro.title?pro.title:""}
@@ -71,10 +111,10 @@ const ProductDetail = () => {
                   <a className="mx-[4px]" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&text=SUGAR%20Cosmetics%20-%20Check%20this%20out%3B%20you%27ll%20love%20it!">
                     <img className="h-[22px] w-[22px]" src="https://in.sugarcosmetics.com/sharebtn/Twitter.svg"/>
                   </a>
-                  <a className="mx-[4px]" href="https://www.tumblr.com/widgets/share/tool/preview?posttype=link&title=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&caption=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&content=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&canonicalUrl=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&shareSource=tumblr_share_button" target="_blank" target="_blank">
+                  <a className="mx-[4px]" href="https://www.tumblr.com/widgets/share/tool/preview?posttype=link&title=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&caption=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&content=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&canonicalUrl=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&shareSource=tumblr_share_button" target="_blank">
                     <img className="h-[22px] w-[22px]" src="https://in.sugarcosmetics.com/sharebtn/Tumblr.svg"/>
                   </a>
-                  <a className="mx-[4px]" href="">
+                  <a className="mx-[4px]" >
                     <img className="h-[22px] w-[22px]" src="https://in.sugarcosmetics.com/sharebtn/Mail.svg"/>
                   </a>
                   <a className="mx-[4px]" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&title=SUGAR%20Cosmetics&summary=SUGAR%20Cosmetics%20-%20Check%20this%20out%3B%20you%27ll%20love%20it!&source=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact" target="_blank">
@@ -91,3 +131,23 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+
+// <SliderWrapper>
+//                 <SideImgDiv>
+//                   <Img src={user.image_url} />
+//                 </SideImgDiv>
+//                 <SideImgDiv>
+//                   <Img src={user.image_url} />
+//                 </SideImgDiv>
+//                 <SideImgDiv>
+//                   <Img src={user.image_url} />
+//                 </SideImgDiv>
+//                 <SideImgDiv>
+//                   <Img src={user.image_url} />
+//                 </SideImgDiv>
+//                 <SideImgDiv>
+//                   <Img src={user.image_url} />
+//                 </SideImgDiv>
+//               </SliderWrapper>
+// <SideImgArrow />
