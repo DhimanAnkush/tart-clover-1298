@@ -103,7 +103,7 @@ const ProductDetail = () => {
                   onClick={handleaddCart}
                   >
                     <FaShoppingBag className="mr-[4px]" /> Add to Cart
-                  </button>):(<h1>Product Added to Cart!</h1>)}
+                  </button>):(<h1 className=" text-white flex justify-center items-center" >Product Added to Cart!</h1>)}
                 
                 </div>
                 <div className="mb-3 mt-1 cursor-pointer flex items-center">
