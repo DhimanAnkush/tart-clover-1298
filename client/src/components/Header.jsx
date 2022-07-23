@@ -4,8 +4,26 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 import {BsHeartFill} from "react-icons/bs"
 import {TbDiscount2} from 'react-icons/tb'
+import { useState } from 'react';
+
 export const Navbar = () => {
+    const [search,setsearch]= useState("");
     const navigate= useNavigate()
+    const handleKeyPress= (e)=>{
+        if(e.charCode==13){
+            if(search==""){
+                return;
+            }
+         navigate(`/search-products/${search}`)            
+        }
+    }
+    const handleSearch= ()=>{
+        if(search==""){
+            return;
+        }
+        navigate(`/search-products/${search}`)
+    }
+
     return (
         <div>
             <div id='headerForLargeScreen'>
@@ -14,8 +32,12 @@ export const Navbar = () => {
                         <Link to="/"><img className="img" src="https://media.sugarcosmetics.com/upload/Logo-static.jpg" alt="Sugar Cosmetics Logo" /></Link>
                     </div>
                     <div className="Header__Search">
-                        <input id="searchItems" className="Header__Search__inputBox" type="text" placeholder="Search for products" />
-                        <p>Search</p>
+                        <input id="searchItems" className="Header__Search__inputBox" type="text" placeholder="Search for products"
+                        value={search}
+                        onChange={(e)=>setsearch(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        />
+                        <p onClick={handleSearch} >Search</p>
                     </div>
                     <div className="Header__Login">
                         <FaUserAlt style={{color:"black",fontSize:"20px"}} />

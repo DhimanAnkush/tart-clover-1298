@@ -3,6 +3,12 @@ const Product = require("../../models/Aman/products.model");
 
 const productRouter = Router();
 
+productRouter.get("/search/:title", async(req,res)=>{
+  
+  let data = await Product.find({title: { $regex: req.params.title, $options: /i/ }});
+  return res.json(data);
+})
+
 productRouter.get("/single/:id", async (req, res) => {
   let data = await Product.findById({ _id: req.params.id });
   res.json(data);
