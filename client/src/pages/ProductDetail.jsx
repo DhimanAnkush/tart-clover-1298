@@ -1,4 +1,4 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import React, { useState } from "react";
 import ReactImageMagnify from "react-image-magnify";
 import { useEffect } from "react";
@@ -12,54 +12,6 @@ import fix1 from '../assets/fix1.webp'
 import fix2 from '../assets/fix2.webp'
 import fix3 from '../assets/fix3.webp'
 import fix4 from '../assets/fix4.webp'
-
-
-
-const Img = styled.img`
-  vertical-align: middle;
-  max-width: 100%;
-  max-height: 100%;
-  cursor: pointer;
-  transition: all 0.5s ease;
-`;
-const SliderWrapper = styled.div`
-  width: 110px;
-  height: 360px;
-  overflow: hidden;
-`;
-const SideImgDiv = styled.div`
-  cursor: pointer;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  margin: 4px 0;
-  width: 100%;
-  height: 30%;
-  opacity: 0.6;
-  transition: all 0.5s ease;
-  border: 1px solid gray;
-  overflow: hidden;
-  &:hover {
-    opacity: 1;
-  }
-  &:hover ${Img} {
-    transition: all 0.5s ease;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-  }
-`;
-
-const SideImgArrow = styled.div`
-  box-sizing: border-box;
-  cursor: pointer;
-  width: 110px;
-  height: 20px;
-  background: rgba(0, 0, 0, 0)
-    url("https://modesens.com/static/img/slidertop_hover.svg") no-repeat scroll
-    50% 50% / 15% padding-box border-box;
-  margin: 2px;
-`;
-
 
 
 
@@ -119,28 +71,11 @@ const ProductDetail = () => {
                 </div>
               </div>
               <div className="h-[510px] w-[160px] max-h-[650px] px-[12px]  cursor-pointer flex flex-col items-center">
-                {/* <img className='my-2 h-[115px] w-[84px]' src={pro.image?pro.image:""} alt="" onClick={(e)=> handleImgChange(pro.image)}/>
+                <img className='my-2 h-[115px] w-[84px]' src={pro.image?pro.image:""} alt="" onClick={(e)=> handleImgChange(pro.image)}/>
                 <img className='my-2 h-[115px] w-[84px]' src={fix1} alt="" onClick={(e)=> handleImgChange(fix1)}/>
-                <img className='my-2 h-[115px] w-[84px]' src={fix2} alt="" onClick={(e)=> handleImgChange(fix2)}/> */}
+                <img className='my-2 h-[115px] w-[84px]' src={fix2} alt="" onClick={(e)=> handleImgChange(fix2)}/>
 
-                <SliderWrapper>
-                    <SideImgDiv>
-                      <Img src={pro.image?pro.image:""} />
-                    </SideImgDiv>
-                    <SideImgDiv>
-                      <Img src={fix1} />
-                    </SideImgDiv>
-                    <SideImgDiv>
-                      <Img src={fix2} />
-                    </SideImgDiv>
-                    <SideImgDiv>
-                      <Img src={fix3} />
-                    </SideImgDiv>
-                    <SideImgDiv>
-                      <Img src={fix4} />
-                    </SideImgDiv>
-                </SliderWrapper>
-                {/* <SideImgArrow /> */}
+                
               </div>
               <div className="w-2/5 flex flex-col max-w-full px-[12px] ">
                 <h1 className="mb-[4px]">
