@@ -26,7 +26,7 @@ export const Footer = () => {
                         <strong>GET THE NEW SUGAR APP TODAY.</strong>
                         {/* <div className="dash"></div> */}
                         <div className="mobileNum">
-                            <p>Tap into a better shopping experience.</p>
+                            <p className="fotterP">Tap into a better shopping experience.</p>
                             <div className="glogoBanner">
                                 <div><img className="img" src="https://cdn.shopify.com/s/files/1/0906/2558/files/google-play.png?v=1580269780" alt="Google Playstore" /></div>
                                 <div><img className="img" src="https://cdn.shopify.com/s/files/1/0906/2558/files/apple-store.png?v=1580269780" alt="Apple AppStore" /></div>
@@ -37,44 +37,44 @@ export const Footer = () => {
                 <div id="info__1">
                     <strong>INFORMATION</strong>
                     <div className="info_links">
-                        <p>Contact Us</p>
-                        <p>Store Locator</p>
-                        <p>Terms & conditions</p>
-                        <p>Returns</p>
-                        <p>FAQs</p>
-                        <p>About Us</p>
+                        <p className="fotterP">Contact Us</p>
+                        <p className="fotterP">Store Locator</p>
+                        <p className="fotterP">Terms & conditions</p>
+                        <p className="fotterP">Returns</p>
+                        <p className="fotterP">FAQs</p>
+                        <p className="fotterP">About Us</p>
                     </div>
                 </div>
                 <div className="contact">
                     <div className='contact-info'>
                         <strong><i className="fa fa-mobile-phone"></i>Call us at</strong>
-                        <p>1800-209-9933</p>
+                        <p className="fotterP">1800-209-9933</p>
                         <p id="dateTime">Monday to Friday : 9 AM - 7 PM</p>
                     </div>
                     <div id="spcaeTopBottom">
                         <strong>Support</strong>
-                        <p>hello@sugarcosmetics.com</p>
+                        <p className="fotterP">hello@sugarcosmetics.com</p>
                     </div>
 
                     <div className="links">
                         <div>
                             <strong>CAREER</strong>
-                            <p>careers@sugarcosmetics.com</p>
+                            <p className="fotterP">careers@sugarcosmetics.com</p>
                         </div>
                         <div>
                             <strong>PRESS & MEDIA</strong>
-                            <p>pr@sugarcosmetics.com</p>
+                            <p className="fotterP">pr@sugarcosmetics.com</p>
                         </div>
                         <div>
                             <strong>INFLUENCER COLLAB</strong>
-                            <p>Join Us</p>
+                            <p className="fotterP">Join Us</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="dividePage"></div>
                 <div className="copyRight">
-                    <p>Copyright © 2020 SUGAR Cosmetics. All rights reserved.</p>
+                    <p className="fotterP">Copyright © 2020 SUGAR Cosmetics. All rights reserved.</p>
                 </div>
 
             </div>

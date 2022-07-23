@@ -1,4 +1,3 @@
-
 import "./styles/header.css";
 import "./styles/sliderDrawer.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,6 +8,8 @@ import { BsHeartFill } from "react-icons/bs";
 import { TbDiscount2 } from "react-icons/tb";
 import { Drawer } from "rsuite";
 import { useState } from "react";
+
+
 export const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export const Navbar = () => {
           <div className="Header__Search">
             <input
               id="searchItems"
-              className="Header__Search__inputBox"
+              className="Header_Search_inputBox"
               type="text"
               placeholder="Search for products"
             />
@@ -45,7 +46,7 @@ export const Navbar = () => {
                 setIsDrawerOpen(true);
               }}
               id="loginLink"
-              className="Header__Login__P"
+              className="Header_Login_P"
             >
               Login / Register
             </a>
@@ -112,7 +113,7 @@ export const Navbar = () => {
             >
               BRUSHES<i className="fas fa-angle-down"></i>
             </div>
-            <div className="navBar__content" id="navBar__content1">
+            <div className="navBar_content" id="navBar_content1">
               <div>
                 <Link to="/brush-products/face">FACE BRUSHES</Link>
                 <Link to="/brush-products/eye">EYE BRUSHES</Link>
@@ -127,7 +128,7 @@ export const Navbar = () => {
             >
               SKINCARE <i className="fas fa-angle-down"></i>
             </div>
-            <div className="navBar__content" id="navBar__content1">
+            <div className="navBar_content" id="navBar_content1">
               <div>
                 <Link to="/skincare-products">MOISTURIZERS</Link>
                 <Link to="/skincare-products">MASKS</Link>
@@ -145,7 +146,7 @@ export const Navbar = () => {
             >
               GIFTING<i className="fas fa-angle-down"></i>
             </div>
-            <div className="navBar__content" id="navBar__content1">
+            <div className="navBar_content" id="navBar_content1">
               <div>
                 <Link to="/gifting-products">SUGAR MERCH STATION</Link>
                 <Link to="/gifting-products">MAKEUP KITS</Link>
@@ -161,7 +162,7 @@ export const Navbar = () => {
             <div className="dropbtn">
               BLOG <i className="fas fa-angle-down"></i>
             </div>
-            <div className="navBar__content" id="navBar__content1">
+            <div className="navBar_content" id="navBar_content1">
               <div>
                 <a href="">FEATURED</a>
                 <a href="">MAKEUP</a>

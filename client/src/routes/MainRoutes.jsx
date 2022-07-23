@@ -7,6 +7,7 @@ import Checkout from '../pages/Cart/Checkout'
 import Gifting_Products from '../pages/Gifting_Products'
 import Makeup_Products from '../pages/Makeup_Products'
 import ProductDetail from '../pages/ProductDetail'
+import Search from '../pages/Search'
 import Skincare_products from '../pages/skincare_products'
 function MainRoutes() {
   return (
@@ -20,6 +21,7 @@ function MainRoutes() {
             <Route path= '/skincare-products' element={<Skincare_products/>}/>
             <Route path= '/gifting-products' element={<Gifting_Products/>}/>
             <Route path= '/product/:id' element={<ProductDetail/>}/>
+            <Route path= "/search-products/:search" element={<Search/>}/>
         <Route path='/cart' element={<Cart />} />
         <Route path="/checkout" element={<Checkout/>}/>
         </Routes>
