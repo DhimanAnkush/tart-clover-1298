@@ -5,26 +5,9 @@ const cookieParser = require("cookie-parser");
 const productRouter = require("./routes/Aman/products.route");
 const CartRouter = require("./routes/P Naga/CartRoute");
 const AddressRoute = require("./routes/P Naga/AddressRoute");
-
-<<<<<<< HEAD
+const otp = require("./routes/Arpit/otp.route");
 const cors = require("cors");
 const helmet = require("helmet");
-// const otp = require('./routes/Arpit/otp.route')
-=======
-
-const express = require('express')
-require('dotenv').config({ path: './.env' })
-const connection = require('./Database/db')
-const cookieParser = require('cookie-parser')
-const productRouter = require('./routes/Aman/products.route')
-const CartRouter = require('./routes/P Naga/CartRoute')
-const AddressRoute = require('./routes/P Naga/AddressRoute')
-
-
-const cors = require('cors')
-const helmet = require('helmet')
-const otp = require('./routes/Arpit/otp.route')
->>>>>>> main
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
