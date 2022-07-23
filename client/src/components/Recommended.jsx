@@ -12,7 +12,7 @@ const Recommended = () => {
     },[])
   return (
     <>
-    <h1>Top Recommended gift cards</h1>
+    <h3>Top Recommended gift cards</h3>
     <div className={styles.productcontainer}>
         {recoom.map((el, index) => {
         return <Product key={index} {...el} />;
