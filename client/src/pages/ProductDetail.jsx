@@ -34,6 +34,11 @@ const ProductDetail = () => {
     console.log(img)
     setDp(img)
   }
+
+  const handleaddCart= ()=>{
+    axios.post(`http://localhost:8080/cart`,{user:"62dba5200958bae1b7664da0",product:id,quantity:1})
+  }
+
   return (
     <div>
       <div className="m-auto flex justify-center">
@@ -92,7 +97,9 @@ const ProductDetail = () => {
                   <span className="mx-2">₹ {pro.price?pro.price:""}</span>
                 </div>
                 <div className="mb-3 mt-1 p-[4px] bg-[#1E2125] rounded-[4px] w-[245px]">
-                  <button className=" cursor-pointer h-[24px] w-[245px] text-white flex justify-center items-center">
+                  <button className=" cursor-pointer h-[24px] w-[245px] text-white flex justify-center items-center" 
+                  onClick={handleaddCart}
+                  >
                     <FaShoppingBag className="mr-[4px]" /> Add to Cart
                   </button>
                 </div>
