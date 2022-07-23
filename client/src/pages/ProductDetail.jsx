@@ -71,10 +71,10 @@ const ProductDetail = () => {
                   <a className="mx-[4px]" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&text=SUGAR%20Cosmetics%20-%20Check%20this%20out%3B%20you%27ll%20love%20it!">
                     <img className="h-[22px] w-[22px]" src="https://in.sugarcosmetics.com/sharebtn/Twitter.svg"/>
                   </a>
-                  <a className="mx-[4px]" href="https://www.tumblr.com/widgets/share/tool/preview?posttype=link&title=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&caption=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&content=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&canonicalUrl=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&shareSource=tumblr_share_button" target="_blank" target="_blank">
+                  <a className="mx-[4px]" href="https://www.tumblr.com/widgets/share/tool/preview?posttype=link&title=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&caption=SUGAR+Cosmetics+-+Check+this+out%3B+you%27ll+love+it%21&content=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&canonicalUrl=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&shareSource=tumblr_share_button" target="_blank">
                     <img className="h-[22px] w-[22px]" src="https://in.sugarcosmetics.com/sharebtn/Tumblr.svg"/>
                   </a>
-                  <a className="mx-[4px]" href="">
+                  <a className="mx-[4px]">
                     <img className="h-[22px] w-[22px]" src="https://in.sugarcosmetics.com/sharebtn/Mail.svg"/>
                   </a>
                   <a className="mx-[4px]" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact&title=SUGAR%20Cosmetics&summary=SUGAR%20Cosmetics%20-%20Check%20this%20out%3B%20you%27ll%20love%20it!&source=https%3A%2F%2Fin.sugarcosmetics.com%2Fproducts%2Fpowder-play-banana-compact" target="_blank">
