@@ -4,7 +4,7 @@ import Brush_Products from '../pages/Brush_Products'
 import Cart from '../pages/Cart/Cart'
 import Makeup_Products from '../pages/Makeup_Products'
 import ProductDetail from '../pages/ProductDetail'
-import Skincare_products from '../pages/Skincare_products'
+import Skincare_products from '../pages/skincare_products'
 function MainRoutes() {
   return (
     <div>
