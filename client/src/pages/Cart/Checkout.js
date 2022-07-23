@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineLeft } from 'react-icons/ai'
 import { BsFillTagFill } from 'react-icons/bs'
-import { FaFileInvoiceDollar, FaShoppingBag } from 'react-icons/fa'
+import {
+  FaFileInvoiceDollar,
+  FaLessThanEqual,
+  FaShoppingBag,
+} from 'react-icons/fa'
 import {
   MdDeleteOutline,
   MdOutlineClose,
@@ -9,17 +13,28 @@ import {
 } from 'react-icons/md'
 import SingleProduct from './SingleProduct'
 import IndianPincode from 'india-pincode-lookup'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+ import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Checkout = () => {
   const [quantity, setQuantity] = useState(0)
   const [toggle, setToggle] = useState(false)
   const [address, setAddress] = useState({})
   const [pinDetails, setPinDetails] = useState({})
+  const [cartData, setCartData] = useState([])
+  const [total, setTotal] = useState(0)
+  const coupon = useSelector((state) => state.couponApplied)
+
+  const notify = (msg) => toast(msg);
+
+  const rTotal = useSelector((state) => state.total)
 
   const handlePincode = async (value) => {
     var pin = IndianPincode.lookup(value)
-    console.log(pin, 'pindetails')
-    if (pin.length>1000 || pin.length==0) {
+    // console.log(pin, 'pindetails')
+    if (pin.length > 1000 || pin.length == 0) {
       alert('Enter Valid Pincode')
       return
     }
@@ -30,6 +45,53 @@ const Checkout = () => {
       post: pin[0].officeName,
     })
   }
+  const user = JSON.parse(localStorage.getItem("userDetails"))
+
+  const handleCart = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:8080/cart/${user._id}`,
+      )
+      const data = await res.json()
+
+      setCartData(data)
+    } catch (e) {
+      console.log(e)
+      notify("network issue or invalid user")
+    }
+  }
+
+  const handleAddress = async (method) => {
+    if (method != 'get') {
+      method.preventDefault()
+      delete address._id
+      setAddress(address)
+      axios
+        .post(`http://localhost:8080/address`, address)
+        .then(({ data }) => {
+          setToggle(false)
+          setAddress(data)
+          notify("address successfully added")
+        })
+        .catch(() => {
+          notify("cant add address something went wrong")
+        })
+    } else {
+      axios
+        .get(`http://localhost:8080/address/${user._id}`)
+        .then(({ data }) => setAddress(data))
+        .catch(() => {
+          notify("cant get the address invalid user or network issue")
+        })
+    }
+  }
+
+  useEffect(() => {
+    handleCart()
+    handleAddress('get')
+
+    // console.log(coupon, 'coupon')
+  }, [])
 
   return (
     <>
@@ -65,7 +127,7 @@ const Checkout = () => {
                   <p>Cart Sub Total:</p>
                 </div>
                 <div className="">
-                  <p>₹ 149.00</p>
+                  <p>₹ {total}.00</p>
                 </div>
               </div>
 
@@ -85,7 +147,7 @@ const Checkout = () => {
                   <p>Discount Applied:</p>
                 </div>
                 <div className="">
-                  <p>₹ 0.00</p>
+                  <p>₹ {coupon ? Math.floor((total / 100) * 30) : '0'}.00</p>
                 </div>
               </div>
 
@@ -99,14 +161,29 @@ const Checkout = () => {
                 </div>
 
                 <div className="">
-                  <p className="font-bold">₹ 198.00</p>
+                  <p className="font-bold">
+                    ₹{' '}
+                    {coupon ? Math.floor((total / 100) * 70 + 49) : total + 49}
+                    .00
+                  </p>
                 </div>
               </div>
             </div>
 
             {/* Product div */}
             <div>
-              <SingleProduct />
+              {cartData.length > 0 &&
+                cartData.map((elm) => {
+                  return (
+                    <SingleProduct
+                      props={elm}
+                      setTotal={setTotal}
+                      setCartData={setCartData}
+                      total={total}
+                      key={elm._id}
+                    />
+                  )
+                })}
             </div>
           </div>
 
@@ -115,11 +192,15 @@ const Checkout = () => {
             <div className="flex justify-between">
               <p>
                 Full Name :{' '}
-                <span className="font-bold text-[14px] text-black">Naga</span>
+                <span className="font-bold text-[14px] text-black">
+                  {address.Fname || 'NA'}
+                </span>
               </p>
               <p>
                 Phone Number :{' '}
-                <span className="font-bold text-black">6281773036</span>
+                <span className="font-bold text-black">
+                  {address.PhoneNumber || 'NA'}
+                </span>
               </p>
             </div>
             <div>
@@ -127,7 +208,7 @@ const Checkout = () => {
                 Email{' '}
                 <span className="font-bold text-[14px] text-black">
                   {' '}
-                  leadernaga90@gmail.com
+                  {address.Email || 'NA'}
                 </span>
               </p>
             </div>
@@ -174,7 +255,10 @@ const Checkout = () => {
               />
             </div>
 
-            <div className="text-[#6C757D] mt-5 flex flex-col gap-y-5 ">
+            <form
+              onSubmit={(e) => handleAddress(e)}
+              className="text-[#6C757D] mt-5 flex flex-col gap-y-5 "
+            >
               {/* First Name & Last Name */}
               <div className="flex gap-x-5">
                 <div className="flex flex-col gap-y-2 w-1/2">
@@ -234,7 +318,7 @@ const Checkout = () => {
                   <input
                     placeholder="Enter Your Phone Number"
                     type="text"
-                    name="Number"
+                    name="PhoneNumber"
                     id="Number"
                     required
                     onChange={(e) =>
@@ -261,7 +345,7 @@ const Checkout = () => {
                   <input
                     placeholder="Enter Your Address"
                     type="text"
-                    name="Address"
+                    name="Line1"
                     id="Address"
                     required
                     onChange={(e) =>
@@ -306,12 +390,12 @@ const Checkout = () => {
                   </p>
                 </div>
                 <div className="flex items-center">
-                  <button
-                    className="bg-black text-[#ffff] text-[12px] px-4 py-1 rounded-lg"
+                  <div
+                    className="bg-black text-[#ffff] text-[12px] px-4 py-1 rounded-lg cursor-pointer"
                     onClick={() => handlePincode(address.Pincode)}
                   >
                     Get Details
-                  </button>
+                  </div>
                 </div>
               </div>
 
@@ -324,6 +408,9 @@ const Checkout = () => {
                   type="text"
                   className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
                   placeholder="post"
+                  onChange={(e) =>
+                    setAddress({ ...address, [e.target.name]: e.target.value })
+                  }
                 />
                 <input
                   disabled
@@ -332,6 +419,9 @@ const Checkout = () => {
                   name="city"
                   className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
                   placeholder="city"
+                  onChange={(e) =>
+                    setAddress({ ...address, [e.target.name]: e.target.value })
+                  }
                 />
                 <input
                   disabled
@@ -340,6 +430,9 @@ const Checkout = () => {
                   name="state"
                   className="text-[13px] outline-0 border-b border-[#eaeaec]-500 "
                   placeholder="state"
+                  onChange={(e) =>
+                    setAddress({ ...address, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
 
@@ -347,19 +440,21 @@ const Checkout = () => {
               <div className="flex justify-center gap-x-5">
                 <input
                   type="submit"
-                  className="bg-[#fc2779] text-[#ffff] py-1 px-4 rounded-lg font-bold"
+                  className="bg-[#fc2779] text-[#ffff] py-1 px-4 rounded-lg font-bold cursor-pointer"
                   value="Save and use this Address"
                 />
-                <input
-                  type="button"
-                  className="bg-black text-[#ffff] py-1 px-4 rounded-lg font-bold"
-                  value="Cancel"
-                />
+                <div
+                  onClick={() => setToggle(!toggle)}
+                  className="bg-black text-[#ffff] py-1 px-4 rounded-lg font-bold cursor-pointer"
+                >
+                  Cancel
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
+       <ToastContainer />
     </>
   )
 }
