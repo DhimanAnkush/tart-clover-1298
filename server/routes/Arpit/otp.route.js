@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { otpSchema } = require("../../models/Arpit/otp.model");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const otp = Router();
@@ -26,6 +27,7 @@ otp.post("/sendOTP", (req, res) => {
     })
     .then((messages) => console.log(messages))
     .catch((error) => console.error(error));
+  otpSchema.insertMany({ phone: phone, hash: fullHash, otp: otp })
   res.status(200).send({ phone: phone, hash: fullHash, otp: otp });
 });
 
@@ -132,7 +134,7 @@ otp.post("/refresh", (req, res) => {
 });
 
 otp.get("/logout", (req, res) => {
-  const phone = req.body.phone
+  const phone = req.body.phone;
   res
     .clearCookie("refreshToken")
     .clearCookie("accessToken")
