@@ -45,12 +45,12 @@ const Checkout = () => {
       post: pin[0].officeName,
     })
   }
-  const user = JSON.parse(localStorage.getItem("userDetails"))
+  let user = JSON.parse(localStorage.getItem("userOTP"))
 
   const handleCart = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/cart/${user._id}`,
+        `http://localhost:8080/cart/${user.userID}`,
       )
       const data = await res.json()
 
@@ -62,12 +62,17 @@ const Checkout = () => {
   }
 
   const handleAddress = async (method) => {
+    let obj = { ...address, user: user.userID }
+    console.log(obj,"obj")
     if (method != 'get') {
       method.preventDefault()
       delete address._id
-      setAddress(address)
+      setAddress({...obj})
+      // setAddress(address)
+      console.log('address:', address)
+
       axios
-        .post(`http://localhost:8080/address`, address)
+        .post(`http://localhost:8080/address`, obj)
         .then(({ data }) => {
           setToggle(false)
           setAddress(data)
@@ -78,7 +83,7 @@ const Checkout = () => {
         })
     } else {
       axios
-        .get(`http://localhost:8080/address/${user._id}`)
+        .get(`http://localhost:8080/address/${user.userID}`)
         .then(({ data }) => setAddress(data))
         .catch(() => {
           notify("cant get the address invalid user or network issue")
@@ -230,7 +235,7 @@ const Checkout = () => {
                     Offers and Pricing
                   </span>
                 </button>
-                <button className="bg-black text-white text-[14px]  w-[60%] rounded-[10px] font-bold text-white">
+                <button className="bg-black text-white text-[14px]  w-[60%] rounded-[10px] font-bold">
                   Proceed to Payment (Rs. 198.00)
                 </button>
               </div>
@@ -303,7 +308,7 @@ const Checkout = () => {
                     className="peer text-[13px] outline-0 border-b border-[#eaeaec]-500"
                   />
 
-                  <p className="invisible peer-invalid:visible text-[#ff0000] font-light text-[12px] font-bold">
+                  <p className="invisible peer-invalid:visible text-[#ff0000] text-[12px] font-bold">
                     Please Enter Your Last Name
                   </p>
                 </div>
@@ -373,7 +378,7 @@ const Checkout = () => {
                   <input
                     placeholder="Enter Your Pincode"
                     type="text"
-                    name="Pincode"
+                    name="PinCode"
                     id="Pincode"
                     onChange={(e) =>
                       setAddress({
@@ -392,7 +397,7 @@ const Checkout = () => {
                 <div className="flex items-center">
                   <div
                     className="bg-black text-[#ffff] text-[12px] px-4 py-1 rounded-lg cursor-pointer"
-                    onClick={() => handlePincode(address.Pincode)}
+                    onClick={() => handlePincode(address.PinCode)}
                   >
                     Get Details
                   </div>
