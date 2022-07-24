@@ -33,10 +33,13 @@ otp.post("/sendOTP", async (req, res) => {
       { id: user._id },
       { phone: phone, hash: fullHash, otp: otp }
     );
-    res.status(200).send({ phone: phone, hash: fullHash, otp: otp });
+    res.status(200).send({ phone: phone, hash: fullHash, otp: otp, userID: user._id });
   } else {
-    await otpSchema.insertMany([{ phone: phone, hash: fullHash, otp: otp }]);
-    res.status(200).send({ phone: phone, hash: fullHash, otp: otp });
+    let data = await otpSchema.insertMany([
+      { phone: phone, hash: fullHash, otp: otp },
+    ]);
+    var userID = data._id;
+    res.status(200).send({ phone: phone, hash: fullHash, otp: otp, userID: userID });
   }
 });
 
@@ -44,6 +47,7 @@ otp.post("/verifyOTP", (req, res) => {
   const phone = req.body.phone;
   const hash = req.body.hash;
   const otp = req.body.otp;
+
   let [hashValue, expires] = hash.split(".");
 
   let now = Date.now();
@@ -84,7 +88,11 @@ otp.post("/verifyOTP", (req, res) => {
       .cookie("refreshTokenID", true, {
         expires: new Date(new Date().getTime() + 3557600000),
       })
-      .send({ msg: "Device Verified", phone: phone, accessToken: accessToken });
+      .send({
+        msg: "Device Verified",
+        phone: phone,
+        accessToken: accessToken,
+      });
   } else {
     return res.status(400).send({ verification: false, msg: "Incorrect OTP" });
   }
@@ -143,7 +151,7 @@ otp.post("/refresh", (req, res) => {
 });
 
 otp.get("/logout", (req, res) => {
-  const phone = req.body.phone
+  const phone = req.body.phone;
   res
     .clearCookie("refreshToken")
     .clearCookie("accessToken")
