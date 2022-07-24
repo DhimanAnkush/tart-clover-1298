@@ -27,7 +27,7 @@ export const Navbar = () => {
     const data = await response.json();
     localStorage.setItem("userOTP", JSON.stringify(data));
     alert(`OTP has been send to this number${data.phone}`);
-    // console.log("data:", data);
+    console.log("data:", data);
   }
   let user = JSON.parse(localStorage.getItem("userOTP"));
   async function verifyOTP(event) {
@@ -124,7 +124,9 @@ export const Navbar = () => {
               </a>
               {/* <div className="wishlist_active"></div> */}
             </div>
-          { accessToken ? (
+
+            {accessToken ? (
+
               <div>
                 <Link to={"/cart"}>
                   <a>
