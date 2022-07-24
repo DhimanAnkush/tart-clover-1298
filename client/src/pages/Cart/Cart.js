@@ -1,66 +1,67 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import {
   MdOutlineShoppingCart,
   MdOutlineLocalShipping,
   MdDeleteOutline,
-} from 'react-icons/md'
-import { FaShoppingBag, FaFileInvoiceDollar } from 'react-icons/fa'
-import styles from './Cart.module.css'
-import { BsFillTagFill } from 'react-icons/bs'
-import { AiOutlineLeft } from 'react-icons/ai'
-import SingleProduct from './SingleProduct'
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+} from "react-icons/md";
+import { FaShoppingBag, FaFileInvoiceDollar } from "react-icons/fa";
+import styles from "./Cart.module.css";
+import { BsFillTagFill } from "react-icons/bs";
+import { AiOutlineLeft } from "react-icons/ai";
+import SingleProduct from "./SingleProduct";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
-  const user = JSON.parse(localStorage.getItem('user'))
-  const [cartData, setCartData] = useState([])
-  const [total, setTotal] = useState(0)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const coupon = useSelector((state) => state.couponApplied)
-  const [couponcode, setCouponcode] = useState('')
-  const notify = (message) => toast(message)
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [cartData, setCartData] = useState([]);
+  const [total, setTotal] = useState(0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const coupon = useSelector((state) => state.couponApplied);
+  const [couponcode, setCouponcode] = useState("");
+  const notify = (message) => toast(message);
 
   const handleDiscount = () => {
-    if (couponcode != 'sugar30' && couponcode != 'SUGAR30') {
-      notify('invalid Coupon Code')
-      return
+    if (couponcode != "sugar30" && couponcode != "SUGAR30") {
+      notify("invalid Coupon Code");
+      return;
     }
 
     if (coupon) {
-      coupon('coupon already applied')
-      return
+      coupon("coupon already applied");
+      return;
     }
-    dispatch({ type: 'couponApplied', payload: true })
+    dispatch({ type: "couponApplied", payload: true });
 
-    setTotal((total / 100) * 70)
-    notify('30% discount applied')
-  }
+    setTotal((total / 100) * 70);
+    notify("30% discount applied");
+  };
 
   const handleCart = async () => {
-    const user = JSON.parse(localStorage.getItem('userDetails'))
+    const user = JSON.parse(localStorage.getItem("userOTP"));
+    console.log('user:', user)
     try {
-      const res = await fetch(`http://localhost:8080/cart/${user._id}`)
-      const data = await res.json()
+      const res = await fetch(`http://localhost:8080/cart/${user.userID}`);
+      const data = await res.json();
 
-      setCartData(data)
+      setCartData(data);
     } catch (e) {
-      notify("network issue or invalid user")
-      console.log(e)
+      notify("network issue or invalid user");
+      console.log(e);
     }
-  }
+  };
 
   useEffect(() => {
-    handleCart()
-  }, [])
+    handleCart();
+  }, []);
 
   return (
     <>
-      <div className="p-10 shadow-lg p-5 rounded-lg w-[90%] mx-auto mt-[3%]">
+      <div className="p-[60px] shadow-lg rounded-lg w-[90%] mx-auto mt-[3%]">
         <div className="bg-white space-between flex gap-x-10 p-4 rounded">
           <div className="flex justify-between w-1/2">
             <div className="flex gap-x-1 items-center">
@@ -101,7 +102,7 @@ const Cart = () => {
                       total={total}
                       key={elm._id}
                     />
-                  )
+                  );
                 })}
             </div>
 
@@ -130,10 +131,10 @@ const Cart = () => {
                     +Add Item
                   </p>
                   <p className="text-[#fc2799] text-[12px] ">
-                    ({' '}
+                    ({" "}
                     <span className="line-through text-[12px] text-[#575555]">
                       ₹499
-                    </span>{' '}
+                    </span>{" "}
                     ₹149)
                   </p>
                 </div>
@@ -228,17 +229,17 @@ const Cart = () => {
 
             <div className="flex gap-x-5  mt-10">
               <button
-                onClick={() => navigate('/brush-products')}
+                onClick={() => navigate("/brush-products")}
                 className="flex items-center py-2 px-4 border rounded-lg gap-x-3"
               >
-                {' '}
-                <AiOutlineLeft />{' '}
+                {" "}
+                <AiOutlineLeft />{" "}
                 <span className="underline">Continue Shopping</span>
               </button>
               <button
                 onClick={() => {
-                  dispatch({ type: 'addTotal', payload: total })
-                  navigate('/checkout')
+                  dispatch({ type: "addTotal", payload: total });
+                  navigate("/checkout");
                 }}
                 className="bg-black text-white text-[14px]  w-[60%] rounded-[10px]"
               >
@@ -249,7 +250,7 @@ const Cart = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;
