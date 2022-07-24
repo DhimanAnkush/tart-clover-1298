@@ -66,7 +66,7 @@ const Checkout = () => {
     console.log(obj,"obj")
     if (method != 'get') {
       method.preventDefault()
-      delete address._id
+      delete obj._id
       setAddress({...obj})
       // setAddress(address)
       console.log('address:', address)
