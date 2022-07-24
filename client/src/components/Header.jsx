@@ -66,6 +66,9 @@ export const Navbar = () => {
     localStorage.removeItem("userDetails");
     window.location.href = "/";
   };
+  const handleBag =()=>{
+    alert("You have to Login first")
+  }
   return (
     <div>
       <div id="headerForLargeScreen">
@@ -121,12 +124,28 @@ export const Navbar = () => {
               </a>
               {/* <div className="wishlist_active"></div> */}
             </div>
-            <div>
-              <a>
-                <FaShoppingBag style={{ color: "#495057", fontSize: "16px" }} />
-              </a>
-              {/* <div className="cart_active"></div> */}
-            </div>
+          { accessToken ? (
+              <div>
+                <Link to={"/cart"}>
+                  <a>
+                    <FaShoppingBag
+                      style={{ color: "#495057", fontSize: "16px" }}
+                    />
+                  </a>
+                </Link>
+                {/* <div className="cart_active"></div> */}
+              </div>
+            ) : (
+              <div>
+                <a onClick={handleBag}>
+                  <FaShoppingBag
+                    style={{ color: "#495057", fontSize: "16px" }}
+                  />
+                </a>
+
+                {/* <div className="cart_active"></div> */}
+              </div>
+            )}
             <div>
               <TbDiscount2 style={{ color: "#495057", fontSize: "20px" }} />
             </div>
