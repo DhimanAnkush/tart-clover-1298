@@ -84,7 +84,7 @@ otp.post("/verifyOTP", (req, res) => {
       .cookie("refreshTokenID", true, {
         expires: new Date(new Date().getTime() + 3557600000),
       })
-      .send({ msg: "Device Verified", phone: phone });
+      .send({ msg: "Device Verified", phone: phone, accessToken: accessToken });
   } else {
     return res.status(400).send({ verification: false, msg: "Incorrect OTP" });
   }

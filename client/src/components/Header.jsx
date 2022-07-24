@@ -25,9 +25,11 @@ export const Navbar = () => {
       }),
     });
     const data = await response.json();
-
-    console.log("data:", data);
+    localStorage.setItem("userOTP", JSON.stringify(data));
+    alert(`OTP has been send to this number${data.phone}`);
+    // console.log("data:", data);
   }
+  let user = JSON.parse(localStorage.getItem("userOTP"));
   async function verifyOTP(event) {
     event.preventDefault();
     const response = await fetch("http://localhost:8080/verifyOTP", {
@@ -36,15 +38,33 @@ export const Navbar = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        phone: user.phone,
+        hash: user.hash,
         otp,
       }),
     });
     const data = await response.json();
-    console.log("data:", data);
+    alert(`${user.phone} Your device has been verified`);
+    localStorage.setItem("userDetails", JSON.stringify(data));
+    window.location.href = "/";
+    // console.log("data:", data);
   }
+
+  let accessToken = JSON.parse(localStorage.getItem("userDetails"));
   // Function to close drawer
   const closeDrawer = () => {
     setIsDrawerOpen(false);
+  };
+
+  const handleLogout = async () => {
+    let res = await fetch("http://localhost:8080/logout", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    localStorage.removeItem("userDetails");
+    window.location.href = "/";
   };
   return (
     <div>
@@ -68,18 +88,32 @@ export const Navbar = () => {
             />
             <p>Search</p>
           </div>
-          <div className="Header__Login">
-            <FaUserAlt style={{ color: "black", fontSize: "20px" }} />
-            <a
-              onClick={() => {
-                setIsDrawerOpen(true);
-              }}
-              id="loginLink"
-              className="Header__Login__P"
-            >
-              Login / Register
-            </a>
-          </div>
+          {accessToken ? (
+            <div className="Header__Login">
+              <FaUserAlt style={{ color: "black", fontSize: "20px" }} />
+              <a
+                onClick={handleLogout}
+                id="loginLink"
+                className="Header__Login__P"
+              >
+                Logout
+              </a>
+            </div>
+          ) : (
+            <div className="Header__Login">
+              <FaUserAlt style={{ color: "black", fontSize: "20px" }} />
+              <a
+                onClick={() => {
+                  setIsDrawerOpen(true);
+                }}
+                id="loginLink"
+                className="Header__Login__P"
+              >
+                Login / Register
+              </a>
+            </div>
+          )}
+
           <div className="Header__LikeCart">
             <div>
               <a>
