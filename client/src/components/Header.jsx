@@ -8,10 +8,26 @@ import { TbDiscount2 } from "react-icons/tb";
 import { Drawer } from "rsuite";
 import { useState, useEffect } from "react";
 export const Navbar = () => {
+  const [search,setsearch]= useState("");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
+
+  const handleKeyPress= (e)=>{
+    if(e.charCode==13){
+        if(search==""){
+            return;
+        }
+     navigate(`/search-products/${search}`)            
+    }
+}
+const handleSearch= ()=>{
+    if(search==""){
+        return;
+    }
+    navigate(`/search-products/${search}`)
+}
 
   async function sendOTP(event) {
     event.preventDefault();
@@ -88,8 +104,11 @@ export const Navbar = () => {
               className="Header__Search__inputBox"
               type="text"
               placeholder="Search for products"
+              value={search}
+              onChange={(e)=>setsearch(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
-            <p>Search</p>
+            <p onClick={handleSearch} >Search</p>
           </div>
           {accessToken ? (
             <div className="Header__Login">

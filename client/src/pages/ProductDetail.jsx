@@ -12,6 +12,7 @@ import fix1 from "../assets/fix1.webp";
 import fix2 from "../assets/fix2.webp";
 import fix3 from "../assets/fix3.webp";
 import fix4 from "../assets/fix4.webp";
+import Recommended from "../components/Recommended";
 
 const ProductDetail = () => {
   const [addedcart, setAddedCart] = useState(false);
@@ -199,6 +200,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+      <Recommended/>
     </div>
   );
 };

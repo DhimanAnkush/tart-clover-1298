@@ -7,6 +7,7 @@ import axios from "axios"
 const Product = ({image,title,review,price,rating,_id}) => {
   const navigate= useNavigate()
   let cartboxRef= useRef()
+  const user = JSON.parse(localStorage.getItem("userOTP"));
   const handleMouseover= ()=>{
     cartboxRef.current.style.visibility="visible";     
   }
@@ -20,7 +21,7 @@ const Product = ({image,title,review,price,rating,_id}) => {
   }
 
   const handleaddCart= ()=>{
-    axios.post(`http://localhost:8080/cart`,{user:"62dba5200958bae1b7664da0",product:_id,quantity:1})
+    axios.post(`http://localhost:8080/cart`,{user:user.userID,product:_id,quantity:1})
   }
 
   return (
