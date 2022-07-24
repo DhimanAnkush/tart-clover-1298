@@ -3,7 +3,7 @@ import styles from "./product.module.css"
 import { BsHeart } from "react-icons/bs";
 import { useRef } from 'react';
 import { useNavigate } from 'react-router';
-
+import axios from "axios"
 const Product = ({image,title,review,price,rating,_id}) => {
   const navigate= useNavigate()
   let cartboxRef= useRef()
@@ -19,6 +19,10 @@ const Product = ({image,title,review,price,rating,_id}) => {
     navigate(`/product/${_id}`)
   }
 
+  const handleaddCart= ()=>{
+    axios.post(`http://localhost:8080/cart`,{user:"62dba5200958bae1b7664da0",product:_id,quantity:1})
+  }
+
   return (
     <div className={styles.productbox}  onMouseEnter={handleMouseover} onMouseLeave={handlMouseLeave} >
       <div className={styles.imagebox} onClick={handlenavigateSingle} >
@@ -32,7 +36,7 @@ const Product = ({image,title,review,price,rating,_id}) => {
       </div>
         <div ref={cartboxRef} className={styles.cartbox}>
           <div><BsHeart style={{margin:"auto",fontSize:"18px",fontWeight:"border"}}/></div>
-          <p>ADD TO CART</p>
+          <p onClick={handleaddCart}>ADD TO CART</p>
         </div>
     </div>
   )

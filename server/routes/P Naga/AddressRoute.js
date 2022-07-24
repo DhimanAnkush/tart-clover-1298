@@ -1,11 +1,12 @@
+
 const { Router } = require('express')
 const Address = require('../../models/P Naga/AddressModel')
 
 const route = Router()
 
-route.get('/', async (req, res) => {
+route.get('/:id', async (req, res) => {
   try {
-    const data = await Address.find().sort('created_at')
+    const data = await Address.findOne({user:req.params.id}).sort('-createdAt')
     res.status(200).send(data)
   } catch (e) {
     res.status(400).send({ message: 'cant find latest one' })
@@ -14,16 +15,18 @@ route.get('/', async (req, res) => {
 
 route.post('/', async (req, res) => {
   const data = req.body
+  console.log(data)
   if (!data) {
-    res.status(400).send({ message: 'PLEASE PROVIDE VALID ADRESS FIELD' })
+    res.status(400).send({ message: 'PLEASE PROVIDE ALL ADRESS FIELD' })
     return
   }
-
+console.log(data)
   try {
-    const data = await Address.create(data)
-    res.status(200).send(data)
+    const response = await Address.create(data)
+    res.status(200).send(response)
   } catch (e) {
-    res.status(400).send({ message: 'PLEASE PROVIDE VALID ADRESS FIELD' })
+    console.log(e.message)
+    res.status(400).send(e.message)
   }
 })
 
