@@ -55,14 +55,14 @@ const SingleProduct = ({ props, setTotal, setCartData,total}) => {
 
   
   return (
-    <div className="flex items-center  ">
-      <div className="flex gap-x-5 w-1/2">
+    <div className="flex items-center flex-col lg:flex-row ">
+      <div className="flex gap-x-5 ">
         <img
           alt="product img"
           className="w-[55px] h-[75px] "
           src={product.product.image}
         />
-        <div className="w-96 flex flex-col gap-y-2">
+        <div className=" flex flex-col gap-y-2">
           <p className=" font-bold text-[12px] text-[#575555] truncate ... w-[50%]">
             {product.product.title}
           </p>

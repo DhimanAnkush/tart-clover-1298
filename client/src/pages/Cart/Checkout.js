@@ -15,8 +15,8 @@ import SingleProduct from './SingleProduct'
 import IndianPincode from 'india-pincode-lookup'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
- import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Checkout = () => {
   const [quantity, setQuantity] = useState(0)
@@ -27,7 +27,7 @@ const Checkout = () => {
   const [total, setTotal] = useState(0)
   const coupon = useSelector((state) => state.couponApplied)
 
-  const notify = (msg) => toast(msg);
+  const notify = (msg) => toast(msg)
 
   const rTotal = useSelector((state) => state.total)
 
@@ -45,29 +45,27 @@ const Checkout = () => {
       post: pin[0].officeName,
     })
   }
-  let user = JSON.parse(localStorage.getItem("userOTP"))
+  let user = JSON.parse(localStorage.getItem('userOTP'))
 
   const handleCart = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:8080/cart/${user.userID}`,
-      )
+      const res = await fetch(`http://localhost:8080/cart/${user.userID}`)
       const data = await res.json()
 
       setCartData(data)
     } catch (e) {
       console.log(e)
-      notify("network issue or invalid user")
+      notify('network issue or invalid user')
     }
   }
 
   const handleAddress = async (method) => {
     let obj = { ...address, user: user.userID }
-    console.log(obj,"obj")
+    console.log(obj, 'obj')
     if (method != 'get') {
       method.preventDefault()
       delete obj._id
-      setAddress({...obj})
+      setAddress({ ...obj })
       // setAddress(address)
       console.log('address:', address)
 
@@ -76,17 +74,17 @@ const Checkout = () => {
         .then(({ data }) => {
           setToggle(false)
           setAddress(data)
-          notify("address successfully added")
+          notify('address successfully added')
         })
         .catch(() => {
-          notify("cant add address something went wrong")
+          notify('cant add address something went wrong')
         })
     } else {
       axios
         .get(`http://localhost:8080/address/${user.userID}`)
         .then(({ data }) => setAddress(data))
         .catch(() => {
-          notify("cant get the address invalid user or network issue")
+          notify('cant get the address invalid user or network issue')
         })
     }
   }
@@ -459,7 +457,7 @@ const Checkout = () => {
           </div>
         </div>
       )}
-       <ToastContainer />
+      <ToastContainer />
     </>
   )
 }
