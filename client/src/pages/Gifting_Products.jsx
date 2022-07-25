@@ -17,7 +17,7 @@ const Gifting_Products = () => {
 
   const handleChange = (e) => {
     axios
-      .get(`http://localhost:8080/products/gifting?sort=${e.target.value}`)
+      .get(`https://sugar-cosmeticsapi.herokuapp.com/products/gifting?sort=${e.target.value}`)
       .then(({ data }) => dispatch(addProduct(data)));
   };
 

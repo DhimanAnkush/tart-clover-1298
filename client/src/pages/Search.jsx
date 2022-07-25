@@ -13,7 +13,7 @@ const Search = () => {
     const {search} = useParams();
     const [searchData,setsearchData]= useState([]);
     useEffect(()=>{
-      axios.get(`http://localhost:8080/products/search/${search}`)
+      axios.get(`https://sugar-cosmeticsapi.herokuapp.com/products/search/${search}`)
         .then(({data})=>setsearchData(data))
     },[search])
     if(searchData.length===0){

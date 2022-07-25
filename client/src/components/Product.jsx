@@ -21,7 +21,7 @@ const Product = ({image,title,review,price,rating,_id}) => {
   }
 
   const handleaddCart= ()=>{
-    axios.post(`http://localhost:8080/cart`,{user:user.userID,product:_id,quantity:1})
+    axios.post(`https://sugar-cosmeticsapi.herokuapp.com/cart`,{user:user.userID,product:_id,quantity:1})
   }
 
   return (

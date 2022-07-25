@@ -24,7 +24,7 @@ const Brush_Products = () => {
 
   const handleChange = (e) => {
     axios
-      .get(`http://localhost:8080/products/brushes?sort=${e.target.value}`)
+      .get(`https://sugar-cosmeticsapi.herokuapp.com/products/brushes?sort=${e.target.value}`)
       .then(({ data }) => dispatch(addProduct(data)));
   };
 

@@ -31,7 +31,7 @@ const handleSearch= ()=>{
 
   async function sendOTP(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:8080/sendOTP", {
+    const response = await fetch("https://sugar-cosmeticsapi.herokuapp.com/sendOTP", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,12 +43,12 @@ const handleSearch= ()=>{
     const data = await response.json();
     localStorage.setItem("userOTP", JSON.stringify(data));
     alert(`OTP has been send to this number${data.phone}`);
-    console.log("data:", data);
+    // console.log("data:", data);
   }
   let user = JSON.parse(localStorage.getItem("userOTP"));
   async function verifyOTP(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:8080/verifyOTP", {
+    const response = await fetch("https://sugar-cosmeticsapi.herokuapp.com/verifyOTP", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const handleSearch= ()=>{
   };
 
   const handleLogout = async () => {
-    let res = await fetch("http://localhost:8080/logout", {
+    let res = await fetch("https://sugar-cosmeticsapi.herokuapp.com/logout", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

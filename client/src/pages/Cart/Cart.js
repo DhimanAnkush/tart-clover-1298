@@ -43,15 +43,15 @@ const Cart = () => {
 
   const handleCart = async () => {
     const user = JSON.parse(localStorage.getItem("userOTP"));
-    console.log('user:', user)
+    // console.log('user:', user)
     try {
-      const res = await fetch(`http://localhost:8080/cart/${user.userID}`);
+      const res = await fetch(`https://sugar-cosmeticsapi.herokuapp.com/cart/${user.userID}`);
       const data = await res.json();
 
       setCartData(data);
     } catch (e) {
       notify("network issue or invalid user");
-      console.log(e);
+      // console.log(e);
     }
   };
 

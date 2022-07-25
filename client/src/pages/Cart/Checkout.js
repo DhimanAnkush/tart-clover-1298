@@ -1,100 +1,140 @@
-import React, { useEffect, useState } from 'react'
-import { AiOutlineLeft } from 'react-icons/ai'
-import { BsFillTagFill } from 'react-icons/bs'
+import React, { useEffect, useState } from "react";
+import { AiOutlineLeft } from "react-icons/ai";
+import { BsFillTagFill } from "react-icons/bs";
 import {
   FaFileInvoiceDollar,
   FaLessThanEqual,
   FaShoppingBag,
-} from 'react-icons/fa'
+} from "react-icons/fa";
 import {
   MdDeleteOutline,
   MdOutlineClose,
   MdOutlineLocalShipping,
-} from 'react-icons/md'
-import SingleProduct from './SingleProduct'
-import IndianPincode from 'india-pincode-lookup'
-import { useSelector } from 'react-redux'
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+} from "react-icons/md";
+import SingleProduct from "./SingleProduct";
+import IndianPincode from "india-pincode-lookup";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
-  const [quantity, setQuantity] = useState(0)
-  const [toggle, setToggle] = useState(false)
-  const [address, setAddress] = useState({})
-  const [pinDetails, setPinDetails] = useState({})
-  const [cartData, setCartData] = useState([])
-  const [total, setTotal] = useState(0)
-  const coupon = useSelector((state) => state.couponApplied)
+  const [quantity, setQuantity] = useState(0);
+  const [toggle, setToggle] = useState(false);
+  const [address, setAddress] = useState({});
+  const [pinDetails, setPinDetails] = useState({});
+  const [cartData, setCartData] = useState([]);
+  const [total, setTotal] = useState(0);
+  const coupon = useSelector((state) => state.couponApplied);
 
-  const notify = (msg) => toast(msg)
+  const notify = (msg) => toast(msg);
 
-  const rTotal = useSelector((state) => state.total)
+  const rTotal = useSelector((state) => state.total);
 
   const handlePincode = async (value) => {
-    var pin = IndianPincode.lookup(value)
+    var pin = IndianPincode.lookup(value);
     // console.log(pin, 'pindetails')
     if (pin.length > 1000 || pin.length == 0) {
-      alert('Enter Valid Pincode')
-      return
+      alert("Enter Valid Pincode");
+      return;
     }
     setPinDetails({
       city: pin[0].districtName,
       state: pin[0].stateName,
       taluk: pin[0].taluk,
       post: pin[0].officeName,
-    })
-  }
-  let user = JSON.parse(localStorage.getItem('userOTP'))
+    });
+  };
+  let user = JSON.parse(localStorage.getItem("userOTP"));
 
   const handleCart = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/cart/${user.userID}`)
-      const data = await res.json()
+      const res = await fetch(
+        `https://sugar-cosmeticsapi.herokuapp.com/cart/${user.userID}`
+      );
+      const data = await res.json();
 
-      setCartData(data)
+      setCartData(data);
     } catch (e) {
-      console.log(e)
-      notify('network issue or invalid user')
+      console.log(e);
+      notify("network issue or invalid user");
     }
-  }
+  };
 
   const handleAddress = async (method) => {
-    let obj = { ...address, user: user.userID }
-    console.log(obj, 'obj')
-    if (method != 'get') {
-      method.preventDefault()
-      delete obj._id
-      setAddress({ ...obj })
+    let obj = { ...address, user: user.userID };
+    console.log(obj, "obj");
+    if (method != "get") {
+      method.preventDefault();
+      delete obj._id;
+      setAddress({ ...obj });
       // setAddress(address)
-      console.log('address:', address)
+      console.log("address:", address);
 
       axios
-        .post(`http://localhost:8080/address`, obj)
+        .post(`https://sugar-cosmeticsapi.herokuapp.com/address`, obj)
         .then(({ data }) => {
-          setToggle(false)
-          setAddress(data)
-          notify('address successfully added')
+          setToggle(false);
+          setAddress(data);
+          notify("address successfully added");
         })
         .catch(() => {
-          notify('cant add address something went wrong')
-        })
+          notify("cant add address something went wrong");
+        });
     } else {
       axios
-        .get(`http://localhost:8080/address/${user.userID}`)
+        .get(`https://sugar-cosmeticsapi.herokuapp.com/address/${user.userID}`)
         .then(({ data }) => setAddress(data))
         .catch(() => {
-          notify('cant get the address invalid user or network issue')
-        })
+          notify("cant get the address invalid user or network issue");
+        });
     }
-  }
+  };
 
   useEffect(() => {
-    handleCart()
-    handleAddress('get')
+    handleCart();
+    handleAddress("get");
 
     // console.log(coupon, 'coupon')
-  }, [])
+  }, []);
+
+  const initPayment = (data) => {
+    const options = {
+      key: "",
+      amount: data.amount,
+      currency: data.currency,
+      name: "SUGAR Cosmetics",
+      description: "You Total Amount",
+      order_id: data.id,
+      handler: async (response) => {
+        try {
+          const verifyURL =
+            "https://sugar-cosmeticsapi.herokuapp.com/verify";
+          const { data } = await axios.post(verifyURL, response);
+          console.log("data:", data);
+        } catch (err) {
+          console.log("err:", err);
+        }
+      },
+      theme: {
+        color: "#322A2A",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+
+  const handlePayment = async () => {
+    try {
+      const orderURL =
+        "https://sugar-cosmeticsapi.herokuapp.com/orders";
+      const { data } = await axios.post(orderURL, { amount: total });
+      console.log("data:", data);
+      initPayment(data.data);
+    } catch (err) {
+      console.log("err:", err);
+    }
+  };
 
   return (
     <>
@@ -150,7 +190,7 @@ const Checkout = () => {
                   <p>Discount Applied:</p>
                 </div>
                 <div className="">
-                  <p>₹ {coupon ? Math.floor((total / 100) * 30) : '0'}.00</p>
+                  <p>₹ {coupon ? Math.floor((total / 100) * 30) : "0"}.00</p>
                 </div>
               </div>
 
@@ -165,7 +205,7 @@ const Checkout = () => {
 
                 <div className="">
                   <p className="font-bold">
-                    ₹{' '}
+                    ₹{" "}
                     {coupon ? Math.floor((total / 100) * 70 + 49) : total + 49}
                     .00
                   </p>
@@ -185,7 +225,7 @@ const Checkout = () => {
                       total={total}
                       key={elm._id}
                     />
-                  )
+                  );
                 })}
             </div>
           </div>
@@ -194,24 +234,24 @@ const Checkout = () => {
           <div className="w-1/2 box-border p-3 text-[13px] text-[#6C757D] bg-inherit gap-y-2 h-fit mt-5 flex flex-col bg-[#f5f5f5] rounded-lg">
             <div className="flex justify-between">
               <p>
-                Full Name :{' '}
+                Full Name :{" "}
                 <span className="font-bold text-[14px] text-black">
-                  {address.Fname || 'NA'}
+                  {address.Fname || "NA"}
                 </span>
               </p>
               <p>
-                Phone Number :{' '}
+                Phone Number :{" "}
                 <span className="font-bold text-black">
-                  {address.PhoneNumber || 'NA'}
+                  {address.PhoneNumber || "NA"}
                 </span>
               </p>
             </div>
             <div>
               <p>
-                Email{' '}
+                Email{" "}
                 <span className="font-bold text-[14px] text-black">
-                  {' '}
-                  {address.Email || 'NA'}
+                  {" "}
+                  {address.Email || "NA"}
                 </span>
               </p>
             </div>
@@ -227,14 +267,17 @@ const Checkout = () => {
             <div>
               <div className="flex gap-x-5  mt-10">
                 <button className="flex items-center py-2 px-4 border rounded-lg gap-x-3">
-                  {' '}
-                  <AiOutlineLeft />{' '}
+                  {" "}
+                  <AiOutlineLeft />{" "}
                   <span className="underline text-black">
                     Offers and Pricing
                   </span>
                 </button>
-                <button className="bg-black text-white text-[14px]  w-[60%] rounded-[10px] font-bold">
-                  Proceed to Payment (Rs. 198.00)
+                <button
+                  onClick={handlePayment}
+                  className="bg-black text-white text-[14px]  w-[60%] rounded-[10px] font-bold"
+                >
+                  Proceed to Payment (Rs. {total})
                 </button>
               </div>
             </div>
@@ -459,7 +502,7 @@ const Checkout = () => {
       )}
       <ToastContainer />
     </>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;

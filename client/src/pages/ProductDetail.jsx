@@ -22,7 +22,7 @@ const ProductDetail = () => {
   const { id } = params;
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/products/single/${id}`)
+      .get(`https://sugar-cosmeticsapi.herokuapp.com/products/single/${id}`)
       .then(({ data }) => {
         setPro(data);
         setDp(data.image);
@@ -37,7 +37,7 @@ const ProductDetail = () => {
   const user = JSON.parse(localStorage.getItem("userOTP"));
 
   const handleaddCart = () => {
-    axios.post(`http://localhost:8080/cart`, {
+    axios.post(`https://sugar-cosmeticsapi.herokuapp.com/cart`, {
       user: `${user.userID}`,
       product: id,
       quantity: 1,

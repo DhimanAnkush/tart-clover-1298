@@ -22,7 +22,7 @@ const SingleProduct = ({ props, setTotal, setCartData,total}) => {
     }
 
     axios
-      .put(`http://localhost:8080/cart/${props._id}/${type}`)
+      .put(`https://sugar-cosmeticsapi.herokuapp.com/cart/${props._id}/${type}`)
       .then((data) => {
         setProduct(data.data)
         notify(`quantity successfully ${type}ed`)
@@ -38,7 +38,7 @@ const SingleProduct = ({ props, setTotal, setCartData,total}) => {
 
   const handleDelete = async (type) => {
     axios
-      .delete(`http://localhost:8080/cart/${props._id}`)
+      .delete(`https://sugar-cosmeticsapi.herokuapp.com/cart/${props._id}`)
       .then(({ data }) => {
         setTotal((state) => state - product.product.price * product.quantity)
 

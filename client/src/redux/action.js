@@ -11,7 +11,7 @@ export const addProduct= (payload)=>{
 }
 
 export const getProduct= (payload) => (dispatch) =>{
- axios.get(`http://localhost:8080/products/${payload}`)
+ axios.get(`https://sugar-cosmeticsapi.herokuapp.com/products/${payload}`)
  .then(({data})=>{
    //  console.log(data)
     dispatch(addProduct(data))

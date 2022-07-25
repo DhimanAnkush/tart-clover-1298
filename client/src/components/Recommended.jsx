@@ -7,7 +7,7 @@ import styles from "../components/product.module.css";
 const Recommended = () => {
     const [recoom,setRecoom]= useState([])
     useEffect(()=>{
-       axios.get(`http://localhost:8080/products/search/gift`)
+       axios.get(`https://sugar-cosmeticsapi.herokuapp.com/products/search/gift`)
        .then(({data})=>setRecoom(data))
     },[])
   return (

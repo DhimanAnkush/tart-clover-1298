@@ -23,7 +23,7 @@ const Makeup_Products = () => {
 
   const handleChange = (e) => {
     axios
-      .get(`http://localhost:8080/products/makeup?sort=${e.target.value}`)
+      .get(`https://sugar-cosmeticsapi.herokuapp.com/products/makeup?sort=${e.target.value}`)
       .then(({ data }) => dispatch(addProduct(data)));
   };
 

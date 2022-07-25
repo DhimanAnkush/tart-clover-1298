@@ -17,7 +17,7 @@ const Skincare_products = () => {
 
   const handleChange = (e) => {
     axios
-      .get(`http://localhost:8080/products/skincare?sort=${e.target.value}`)
+      .get(`https://sugar-cosmeticsapi.herokuapp.com/products/skincare?sort=${e.target.value}`)
       .then(({ data }) => dispatch(addProduct(data)));
   };
 
