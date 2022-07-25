@@ -8,6 +8,7 @@ const AddressRoute = require('./routes/P Naga/AddressRoute')
 const otp = require('./routes/Arpit/otp.route')
 const cors = require('cors')
 const helmet = require('helmet')
+const paymentRouter = require('./routes/Arpit/payment.route')
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
   res.send(`Sugar Cosmetics API server started on localhost:${PORT}`)
 })
 app.use('/', otp)
-
+app.use("/", paymentRouter)
 app.use('/products', productRouter)
 app.use('/cart', CartRouter)
 app.use('/address', AddressRoute)
