@@ -119,9 +119,11 @@ const Checkout = () => {
           typeof response.razorpay_payment_id == "undefined" ||
           response.razorpay_payment_id < 1
         ) {
-          redirect_url = "/payment-error";
+          redirect_url =
+            "/razorpay/api/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed/payment-error";
         } else {
-          redirect_url = "/payment-success";
+          redirect_url =
+            "/razorpay/api/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d/payment-success";
         }
         window.location.href = redirect_url;
       },
