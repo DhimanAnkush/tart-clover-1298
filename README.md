@@ -66,7 +66,7 @@ go to http://localhost:3000
    </p>
  
  Click the link to view project: 
- <a href="https://mykimaye.netlify.app/">Kimaye</a>
+ <a href="https://sugar-cosmetics.vercel.app/">Sugar Cosmetics</a>
   
 ## Lessons Learned
 
