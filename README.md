@@ -65,7 +65,7 @@ go to http://localhost:3000
 
 ## Snippets
 <p>
-    <img src="https://github.com/ribhar/portfolio-1-0/blob/main/src/assets/sugarcosmetics.PNG" >
+    <img src="https://user-images.githubusercontent.com/99549985/181001784-12bc929e-020b-430c-b5a7-ac2f6dcccb04.png" >
    </p>
  
  Click the link to view project: 
