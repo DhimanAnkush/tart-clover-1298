@@ -123,7 +123,7 @@ const Checkout = () => {
         } else {
           redirect_url = "/payment-success";
         }
-        location.href = redirect_url;
+        window.location.href = redirect_url;
       },
       theme: {
         color: "#322A2A",
