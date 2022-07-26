@@ -114,7 +114,7 @@ const Checkout = () => {
         } catch (err) {
           console.log("err:", err);
         }
-        let redirect_url;
+        var redirect_url;
         if (
           typeof response.razorpay_payment_id == "undefined" ||
           response.razorpay_payment_id < 1
