@@ -30,7 +30,7 @@ https://sugar-cosmetics.vercel.app/
 Clone the project
 
 ```
-git clone https://media.sugarcosmetics.com/upload/Logo-static.jpg
+git clone https://github.com/DhimanAnkush/tart-clover-1298.git
 ```
 
 Install npm packages
