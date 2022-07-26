@@ -108,13 +108,21 @@ const Checkout = () => {
       order_id: data.id,
       handler: async (response) => {
         try {
-          const verifyURL =
-            "https://sugar-cosmeticsapi.herokuapp.com/verify";
+          const verifyURL = "https://sugar-cosmeticsapi.herokuapp.com/verify";
           const { data } = await axios.post(verifyURL, response);
           console.log("data:", data);
         } catch (err) {
           console.log("err:", err);
         }
+        if (
+          typeof response.razorpay_payment_id == "undefined" ||
+          response.razorpay_payment_id < 1
+        ) {
+          redirect_url = "/payment-error";
+        } else {
+          redirect_url = "/payment-success";
+        }
+        location.href = redirect_url;
       },
       theme: {
         color: "#322A2A",
@@ -126,8 +134,7 @@ const Checkout = () => {
 
   const handlePayment = async () => {
     try {
-      const orderURL =
-        "https://sugar-cosmeticsapi.herokuapp.com/orders";
+      const orderURL = "https://sugar-cosmeticsapi.herokuapp.com/orders";
       const { data } = await axios.post(orderURL, { amount: total });
       console.log("data:", data);
       initPayment(data.data);
