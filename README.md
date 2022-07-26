@@ -13,7 +13,9 @@ A Project done during Unit-6 construct week of Masai School
   <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-react-native.svg" alt="react" width="40" height="40"/> </a> 
    <a href="https://redux.js.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-redux.svg" alt="redux" width="40" height="40"/> 
   <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-node-js.svg" alt="nodejs" width="40" height="40"/> </a>
-   <a href="https://mongoosejs.com/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/mongoose.png" alt="mongoose" width="60" height="30"/> </a>
+   <a href="https://mongoosejs.com/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/mongoose.png" alt="mongoose" width="60" height="30"/> 
+   </a>
+   <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="giticons/tailwind-css.svg" alt="tailwind" width="40" height="40"/> </a> 
   <a href="https://dashboard.heroku.com/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-heroku.svg" alt="heroku" width="40" height="40"/> </a>
 </p>
  
