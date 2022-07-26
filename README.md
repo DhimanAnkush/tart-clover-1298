@@ -62,7 +62,7 @@ go to http://localhost:3000
 
 ## Snippets
 <p>
-    <img src="https://www.financialexpress.com/wp-content/uploads/2016/09/INI-farms-s-website.jpg" >
+    <img src="https://github.com/ribhar/portfolio-1-0/blob/main/src/assets/sugarcosmetics.PNG" >
    </p>
  
  Click the link to view project: 
