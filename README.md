@@ -1,6 +1,7 @@
 # Sugar Cosmetics
-Shop beauty products online by SUGAR Cosmetics at best price. Choose premium quality makeup for face, eyes, lips & avail exciting offers. Order now & get free delivery.<br>
-A Project done during Unit-6 construct week of Masai School
+SUGAR Cosmetics is a cruelty-free makeup brand that is high on style and higher on performance. The brand is inspired by and targeted towards bold, independent women who refuse to be stereotyped into roles.
+
+Manufactured in state-of-the-art facilities across Germany, Italy, India, USA and Korea the brand ships its bestselling products across Lips, Eyes, Face and Nail categories across the world.
 
 <a href="https://sugar-cosmetics.vercel.app/">![Logo](https://media.sugarcosmetics.com/upload/Logo-static.jpg)</a>
 ## Technologies Used
