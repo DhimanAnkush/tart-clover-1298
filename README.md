@@ -53,12 +53,12 @@ go to http://localhost:3000
 
 ## Functionalities of the website
 
-1. A user can register his account on the website.
-2. User can log in using credentials given during registration.
-3. User can search for various types of items such as Fruits, Vegetables and much more.
-4. User can filter and sort his/her search on various parameters, i.e. price, type, and many more.
-5. User can select the Quantity while purchasing any product.
-6. User can make payments and succcessfully purchase their Fruits.
+1. A user can register his account on the website
+2. User can log in using their mobile number through otp authentication
+3. User can search from the variety of products available 
+4. User can filter and sort their search on various parameters, i.e. price, relavance, and many more
+5. User can select the Quantity while purchasing any product
+6. User can checkout with razor's payment gateway through Card, UPI, Netbanking, etc. 
 
 ## Snippets
 <p>
