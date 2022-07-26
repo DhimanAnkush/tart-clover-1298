@@ -1,5 +1,5 @@
 # Sugar Cosmetics
-Shop beauty products online by SUGAR Cosmetics at best price. Choose premium quality makeup for face, eyes, lips & avail exciting offers. Order now & get free delivery.
+Shop beauty products online by SUGAR Cosmetics at best price. Choose premium quality makeup for face, eyes, lips & avail exciting offers. Order now & get free delivery.<br>
 A Project done during Unit-6 construct week of Masai School
 
 <a href="https://sugar-cosmetics.vercel.app/">![Logo](https://media.sugarcosmetics.com/upload/Logo-static.jpg)</a>
