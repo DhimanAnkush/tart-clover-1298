@@ -20,9 +20,9 @@ A Project done during Unit-6 construct week of Masai School
  ### <u>Deployed Link</u>
 
 
-Deployed with NetlifyApp 
+Deployed with vercel app 
 ```
-https://mykimaye.netlify.app/
+https://sugar-cosmetics.vercel.app/
  ```
 
 ### <u>Run Locally</u>
@@ -30,7 +30,7 @@ https://mykimaye.netlify.app/
 Clone the project
 
 ```
-git clone https://github.com/ribhar/Kimaye.git
+git clone https://media.sugarcosmetics.com/upload/Logo-static.jpg
 ```
 
 Install npm packages
