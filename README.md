@@ -1,8 +1,8 @@
 # Sugar Cosmetics
-Kimaye. Brand. Growers of India's finest fruits, we want to make eating fruits a worry-free and delightful experience for you.
-A Project done during Unit-5 construct week of Masai School
+Shop beauty products online by SUGAR Cosmetics at best price. Choose premium quality makeup for face, eyes, lips & avail exciting offers. Order now & get free delivery.
+A Project done during Unit-6 construct week of Masai School
 
-<a href="https://mykimaye.netlify.app/">![Logo](https://cdn.shopify.com/s/files/1/0449/5225/6667/files/website-logo_400x.png?v=1596288204)</a>
+<a href="https://sugar-cosmetics.vercel.app/">![Logo](https://media.sugarcosmetics.com/upload/Logo-static.jpg)</a>
 ## Technologies Used
 
 #### Tech Stack-
